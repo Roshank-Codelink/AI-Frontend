@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import AppSidebar from "@/components/layout/LeftSidebar";
+import Header from "@/components/layout/Header";
+import { usePathname } from "next/navigation";
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -21,13 +26,30 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>)
+    
+{
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex h-screen w-screen overflow-hidden">
+          {/* Global Sidebar */}
+          <AppSidebar className="hidden md:flex" />
+
+          {/* Main Content Area */}
+          <div className="flex flex-col flex-1 bg-gray-50">
+            {/* Dynamic Header */}
+            <Header  />
+
+            {/* Page Content */}
+            <main className="flex-1 p-6 overflow-y-auto">
+              {children}
+            </main>
+          </div>
+        </div>
+
       </body>
     </html>
   );
