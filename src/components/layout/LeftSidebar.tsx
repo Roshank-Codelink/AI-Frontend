@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Briefcase, FileText, Wallet } from "lucide-react";
+import { Home, FileText, Wallet, User, Users } from "lucide-react";
 
 import {
   Tooltip,
@@ -11,21 +11,22 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { NavLinkList } from "@/type";
+import AccountDropdown from "./Useraccount";
 
 const NavLinks: NavLinkList[] = [
   { title: "Home", url: "/", icon: Home },
-  { title: "Projects", url: "/projects", icon: Briefcase },
+  { title: "Employee", url: "/employee", icon: Users },
   { title: "Summary", url: "/summary", icon: FileText },
   { title: "Payout", url: "/payout", icon: Wallet },
 ];
 
-export default function AppSidebar({ className }: { className?: string }) {
+export default function AppSidebar({ className }: { className: string }) {
   const pathname = usePathname();
 
   return (
     <>
       {/* Desktop Vertical Sidebar */}
-      <div className={`hidden md:flex h-screen w-24 bg-white border-r flex-col items-center py-6 ${className}`}>
+      <div className={`hidden md:flex h-screen w-23 bg-white border-r flex-col items-center py-6 ${className}`}>
         {/* Logo */}
         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-300 flex items-center justify-center shadow mb-10">
           <span className="text-white font-bold text-xl">Yp</span>
@@ -33,7 +34,7 @@ export default function AppSidebar({ className }: { className?: string }) {
 
         {/* Menu Items */}
         <TooltipProvider>
-          <div className="flex-1 flex flex-col gap-8">
+          <div className="flex-1 flex flex-col gap-3">
             {NavLinks.map(({ title, url, icon: Icon }) => {
               const active = pathname === url;
               return (
@@ -60,9 +61,26 @@ export default function AppSidebar({ className }: { className?: string }) {
             })}
           </div>
         </TooltipProvider>
+
+        {/* Account Dropdown - At Bottom of Desktop Sidebar */}
+        <div className="mt-auto">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <AccountDropdown  alignment="start" />
+              </TooltipTrigger>
+              <TooltipContent
+                side="right"
+                className="relative bg-orange-500 text-white text-sm font-medium px-3 py-1.5 rounded-md shadow-md"
+              >
+                Account
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
       </div>
 
-      {/* Mobile Bottom Navigation */}
+      {/* Mobile Bottom Navigation - No Account Here */}
       <div className="flex md:hidden fixed bottom-0 left-0 right-0 bg-white border-t justify-around py-2 shadow-t-lg">
         {NavLinks.map(({ title, url, icon: Icon }) => {
           const active = pathname === url;

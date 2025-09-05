@@ -4,8 +4,7 @@ import "./globals.css";
 
 import AppSidebar from "@/components/layout/LeftSidebar";
 import Header from "@/components/layout/Header";
-
-
+import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,29 +26,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>)
-    
+
+
 {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen w-screen overflow-hidden">
-          {/* Global Sidebar */}
+        <div className="flex h-screen w-screen">
+          {/* Global Sidebar - Fixed */}
           <AppSidebar className="hidden md:flex" />
 
-          {/* Main Content Area */}
-          <div className="flex flex-col flex-1 bg-gray-50 min-w-0">
-            {/* Dynamic Header */}
+          {/* Main Content Area - Scrollable */}
+          <div className="flex flex-col flex-1 bg-gray-50 min-w-0 overflow-hidden">
+            {/* Dynamic Header - Fixed */}
             <Header />
 
-            {/* Page Content */}
-            <main className="flex-1 p-3 sm:p-4 md:p-6 overflow-y-auto">
+            {/* Page Content - Scrollable */}
+            <main className="flex-1 overflow-y-auto ">
               {children}
             </main>
           </div>
         </div>
-
       </body>
     </html>
   );

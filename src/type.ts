@@ -10,3 +10,12 @@ export interface Notification{
     description: string,
 };
 
+
+export interface Projects{
+    title: string,
+    description: string,
+    status: string,
+    createdAt: string,
+
+}
+

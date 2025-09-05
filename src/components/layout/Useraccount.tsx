@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { User } from "lucide-react"
 
-export default function AccountDropdown() {
+export default function AccountDropdown({alignment}: {alignment: "center" | "start" | "end"}) {
   return (
-    <DropdownMenu>
+    <DropdownMenu>  
       <DropdownMenuTrigger asChild>
         <button className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 rounded-full bg-orange-500 hover:bg-orange-600 transition duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300 flex-shrink-0">
           {/* Avatar - Mobile optimized */}
@@ -21,7 +21,7 @@ export default function AccountDropdown() {
       </DropdownMenuTrigger>
 
       {/* Dropdown Content - Mobile optimized */}
-      <DropdownMenuContent align="end" className="w-28 sm:w-36 md:w-44 lg:w-52 shadow-lg border border-gray-200 rounded-md bg-white z-50">
+      <DropdownMenuContent align={alignment} className="w-28 sm:w-36 md:w-44 lg:w-52 shadow-lg border border-gray-200 rounded-md bg-white z-50">
         <DropdownMenuLabel className="text-gray-600 text-xs sm:text-sm font-medium px-2 py-1.5">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="text-gray-800 hover:bg-gray-100 rounded-md transition text-xs sm:text-sm px-2 py-1.5 cursor-pointer">
