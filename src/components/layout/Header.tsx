@@ -5,14 +5,14 @@ import Notification from "./Notification"
 import AccountDropdown from "./Useraccount"
 
 export default function Header() {
-  const Pathname = usePathname();
-  const Title = Pathname.split("/")[1];
+  const pathname = usePathname();
+  const title = pathname.split("/")[1];
 
   return (
-    <header className="w-full h-16 bg-[#f8f9fa] border-b  border-[#ddd]/40 px-2 sm:px-3 md:px-4 lg:px-6 flex items-center justify-between relative">
+    <header className="w-full h-16 bg-[#f8f9fa] border-b border-[#ddd]/40 px-2 sm:px-3 md:px-4 lg:px-6 flex items-center justify-between sticky top-0 z-50">
       {/* Title - Fully responsive */}
       <h1 className="text-[#ff8d4f] text-sm sm:text-base md:text-lg lg:text-xl font-bold truncate flex-1 min-w-0 mr-2">
-        {Title || "dashboard"}
+        {title || "dashboard"}
       </h1> 
 
       {/* Right section: Notification + Account (Mobile only) */}
@@ -20,7 +20,7 @@ export default function Header() {
         <Notification />
         {/* Account Dropdown - Only visible on mobile */}
         <div className="md:hidden">
-          <AccountDropdown  alignment="end" />
+          <AccountDropdown alignment="end" />
         </div>
       </div>
     </header> 
