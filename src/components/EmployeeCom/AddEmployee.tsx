@@ -23,11 +23,7 @@ export default function AddEmployee() {
                             Employees
                         </TabsTrigger>
                     </TabsList>
-                    <TabsContent value="employees" className="mt-2 sm:mt-4 w-full">
-                        <div className="w-full">
-                            <p className="text-gray-600 text-xs sm:text-sm">Employee management tools</p>
-                        </div>
-                    </TabsContent>
+                    
                 </Tabs>
             </div>
         </div>

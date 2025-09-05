@@ -125,49 +125,43 @@ export default function EmployeeContent() {
                 </div>
             </div>
 
-            {/* Table */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Employee List</CardTitle>
-                    <CardDescription>Manage your team members</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="border-b">
-                                    <th className="text-left py-3 px-4 font-semibold">Profile Picture</th>
-                                    <th className="text-left py-3 px-4 font-semibold">Name</th>
-                                    <th className="text-left py-3 px-4 font-semibold">Email</th>
-                                    <th className="text-left py-3 px-4 font-semibold">Role</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {employees.map((employee, index) => (
-                                    <tr key={employee.id} className={`border-b ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                                        <td className="py-3 px-4">
-                                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                                <span className="text-blue-600 text-sm font-medium">{employee.avatar}</span>
-                                            </div>
-                                        </td>
-                                        <td className="py-3 px-4 font-medium">{employee.name}</td>
-                                        <td className="py-3 px-4 text-gray-600">{employee.email}</td>
-                                        <td className="py-3 px-4">
-                                            <span className={`px-2 py-1 rounded-full text-xs ${
-                                                employee.status === 'Active' 
-                                                    ? 'bg-green-100 text-green-800' 
-                                                    : 'bg-yellow-100 text-yellow-800'
-                                            }`}>
-                                                {employee.role}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </CardContent>
-            </Card>
+            {/* Employee Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {employees.map((employee) => (
+                    <Card key={employee.id} className="hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                            <div className="flex flex-col items-center text-center space-y-3">
+                                {/* Avatar */}
+                                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <span className="text-blue-600 text-xl font-bold">{employee.avatar}</span>
+                                </div>
+                                
+                                {/* Employee Info */}
+                                <div className="space-y-1">
+                                    <h3 className="font-semibold text-lg">{employee.name}</h3>
+                                    <p className="text-sm text-gray-600">{employee.email}</p>
+                                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                                        employee.status === 'Active' 
+                                            ? 'bg-green-100 text-green-800' 
+                                            : 'bg-yellow-100 text-yellow-800'
+                                    }`}>
+                                        {employee.role}
+                                    </span>
+                                </div>
+                                
+                                {/* Status Badge */}
+                                <div className={`px-2 py-1 rounded-full text-xs ${
+                                    employee.status === 'Active' 
+                                        ? 'bg-green-100 text-green-700' 
+                                        : 'bg-yellow-100 text-yellow-700'
+                                }`}>
+                                    {employee.status}
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
         </div>
     );
 } 
