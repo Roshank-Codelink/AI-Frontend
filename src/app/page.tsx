@@ -1,25 +1,52 @@
-"use client"
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 
-import ProjectTaps from "@/components/ProjectCom/ProjectTaps"
+import AppSidebar from "@/components/layout/LeftSidebar";
+import Header from "@/components/layout/Header";
 
-export default function HomePage() {
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "AI Frontend - Project Management",
+  description: "AI-powered project management dashboard",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>)
+{
   return (
-    <div className="w-full h-full p-5 sm:p-2 md:p-4 lg:p-6 overflow-x-hidden">
-      <div className="mb-3 sm:mb-4 md:mb-6 lg:mb-8">
-        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-1 sm:mb-2 md:mb-3">Home</h1>
-        <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg">Welcome to your dashboard</p>
-      </div>
-      
-      <div className="bg-white rounded-lg shadow-sm p-2 sm:p-3 md:p-4 lg:p-6 mb-3 sm:mb-4 md:mb-6 lg:mb-8">
-        <h2 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-700 mb-2 sm:mb-3 md:mb-4">Dashboard Overview</h2>
-        <p className="text-gray-500 text-xs sm:text-sm md:text-base lg:text-lg">
-          Here you can manage all your activities and view important information.
-        </p>
-      </div>
-      
-      <div className="w-full">
-        <ProjectTaps />
-      </div>
-    </div>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <div className="flex h-screen w-screen">
+          {/* Global Sidebar - Fixed */}
+          <AppSidebar className="hidden md:flex" />
+
+          {/* Main Content Area - No Scrolling */}
+          <div className="flex flex-col flex-1 bg-gray-50 min-w-0">
+            {/* Dynamic Header - Fixed */}
+            <Header />
+
+            {/* Page Content - No Scrolling */}
+            <main className="flex-1">
+              {children}
+            </main>
+          </div>
+        </div>
+      </body>
+    </html>
   );
 }
