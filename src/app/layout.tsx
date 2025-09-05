@@ -35,13 +35,13 @@ export default function RootLayout({
           {/* Global Sidebar - Fixed */}
           <AppSidebar className="hidden md:flex" />
 
-          {/* Main Content Area - No Scrolling */}
-          <div className="flex flex-col flex-1 bg-gray-50 min-w-0">
+          {/* Main Content Area - Phone Padding Fixed */}
+          <div className="flex flex-col flex-1 bg-gray-50 min-w-0 overflow-hidden">
             {/* Dynamic Header - Fixed */}
             <Header />
 
-            {/* Page Content - No Scrolling */}
-            <main className="flex-1">
+            {/* Page Content - Phone Padding */}
+            <main className="flex-1 overflow-y-auto">
               {children}
             </main>
           </div>
