@@ -10,9 +10,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { NavLinks } from "@/type";
+import { NavLinkList } from "@/type";
 
-const NavLinks: NavLinks[] = [
+const NavLinks: NavLinkList[] = [
   { title: "Home", url: "/", icon: Home },
   { title: "Projects", url: "/projects", icon: Briefcase },
   { title: "Summary", url: "/summary", icon: FileText },

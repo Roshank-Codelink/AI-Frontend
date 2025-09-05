@@ -4,7 +4,7 @@ import "./globals.css";
 
 import AppSidebar from "@/components/layout/LeftSidebar";
 import Header from "@/components/layout/Header";
-import { usePathname } from "next/navigation";
+
 
 
 const geistSans = Geist({
@@ -39,12 +39,12 @@ export default function RootLayout({
           <AppSidebar className="hidden md:flex" />
 
           {/* Main Content Area */}
-          <div className="flex flex-col flex-1 bg-gray-50">
+          <div className="flex flex-col flex-1 bg-gray-50 min-w-0">
             {/* Dynamic Header */}
-            <Header  />
+            <Header />
 
             {/* Page Content */}
-            <main className="flex-1 p-6 overflow-y-auto">
+            <main className="flex-1 p-3 sm:p-4 md:p-6 overflow-y-auto">
               {children}
             </main>
           </div>

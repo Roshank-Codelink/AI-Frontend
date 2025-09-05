@@ -1,4 +1,4 @@
-export interface NavLinks {
+export interface NavLinkList {
     url: string;
     icon: React.ElementType;
     title: string;
