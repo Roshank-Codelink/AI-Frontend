@@ -19,3 +19,12 @@ export interface Projects{
 
 }
 
+export interface Employees{
+    id: number,
+    name: string,
+    email: string,
+    role: string,
+    avatar: string,
+    status: string,
+}
+

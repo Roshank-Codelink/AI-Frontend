@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Projects } from "@/type"
 import {
     Card,
-    CardAction,
+    
     CardContent,
     CardDescription,
     CardFooter,
@@ -12,27 +12,7 @@ import {
 
 export default function ProjectTaps() {
 
-    let projects: Projects[] = [
-        {
-            title: "Project 1",
-            description: "Description 1",
-            status: "New Project",
-            createdAt: "2021-01-01",
-        },
-        {
-            title: "Project 2",
-            description: "Description 2",
-            status: "In Progress",
-            createdAt: "2021-01-02",
-        },
-
-        {
-            title: "Project 3",
-            description: "Description 3",
-            status: "Completed",
-            createdAt: "2021-01-03",
-        },
-    ]
+  
 
 
 

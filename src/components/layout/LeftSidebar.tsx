@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, FileText, Wallet, User, Users } from "lucide-react";
+import { Home, FileText, Wallet, Users } from "lucide-react";
 
 import {
   Tooltip,

@@ -4,7 +4,7 @@ import "./globals.css";
 
 import AppSidebar from "@/components/layout/LeftSidebar";
 import Header from "@/components/layout/Header";
-import { usePathname } from "next/navigation";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

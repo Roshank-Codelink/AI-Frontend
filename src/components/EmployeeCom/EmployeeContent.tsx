@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Filter, Download } from "lucide-react";
+import { Search } from "lucide-react";
 import {
     Card,
     CardContent,
@@ -8,9 +8,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+import { Employees } from "@/type";
 
 export default function EmployeeContent() {
-    const employees = [
+    const employees: Employees[] = [
         {
             id: 1,
             name: "Mrs. Shawna Franey",

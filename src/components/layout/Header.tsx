@@ -5,8 +5,8 @@ import Notification from "./Notification"
 import AccountDropdown from "./Useraccount"
 
 export default function Header() {
-  let Pathname = usePathname();
-  let Title = Pathname.split("/")[1];
+  const Pathname = usePathname();
+  const Title = Pathname.split("/")[1];
 
   return (
     <header className="w-full h-16 bg-[#f8f9fa] border-b  border-[#ddd]/40 px-2 sm:px-3 md:px-4 lg:px-6 flex items-center justify-between relative">
