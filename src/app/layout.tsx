@@ -36,7 +36,7 @@ export default function RootLayout({
           <AppSidebar className="hidden md:flex" />
 
           {/* Main Content Area - Phone Padding Fixed */}
-          <div className="flex flex-col flex-1 bg-gray-50 min-w-0 overflow-hidden">
+          <div className="flex flex-col flex-1 bg-gray-50 min-w-0 overflow-hidden pb-[50px] lg:pb-0 md:pb-0">
             {/* Dynamic Header - Fixed */}
             <Header />
 
