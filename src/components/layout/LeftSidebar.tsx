@@ -81,7 +81,7 @@ export default function AppSidebar({ className }: { className: string }) {
       </div>
 
       {/* Mobile Bottom Navigation - No Account Here */}
-      <div className="flex md:hidden fixed bottom-0 left-0 right-0 bg-white border-t justify-around py-2 shadow-t-lg">
+      <div className="flex md:hidden z-50 fixed bottom-0 left-0 right-0 bg-white border-t justify-around py-2 shadow-t-lg">
         {NavLinks.map(({ title, url, icon: Icon }) => {
           const active = pathname === url;
           return (

@@ -23,8 +23,13 @@ export interface Employees{
     id: number,
     name: string,
     email: string,
+    phone: string,
     role: string,
     avatar: string,
+    profileImage?: string,
+    joinDate: string,
+    project: string,
     status: string,
 }
+
 

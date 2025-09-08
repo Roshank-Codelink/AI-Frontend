@@ -9,8 +9,8 @@ export default function EmployeePage() {
     const [activeTab, setActiveTab] = useState("Employees");
     return (
         <div className="flex h-full">
-            {/* Fixed Sidebar */}
-            <div className="w-[200px] h-full">
+            {/* Fixed Sidebar - Only visible on large screens */}
+            <div className="hidden lg:block w-[200px] h-full">
                 <AddEmployee onTabChange={setActiveTab} />
             </div>
             
