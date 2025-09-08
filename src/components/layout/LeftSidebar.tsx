@@ -26,7 +26,7 @@ export default function AppSidebar({ className }: { className: string }) {
   return (
     <>
       {/* Desktop Vertical Sidebar */}
-      <div className={`hidden md:flex h-screen w-23 bg-white border-r flex-col items-center py-6 ${className}`}>
+      <div className={`hidden md:flex h-screen w-20 bg-white border-r flex-col items-center py-6 ${className}`}>
         {/* Logo */}
         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-300 flex items-center justify-center shadow mb-10">
           <span className="text-white font-bold text-xl">Yp</span>

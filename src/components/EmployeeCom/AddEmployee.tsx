@@ -9,7 +9,7 @@ type Props = {
 
 export default function AddEmployee({ onTabChange }: Props) {
   return (
-    <div className="w-full h-full bg-[#e4e4ed4f] p-2">
+    <div className="w-full h-full  bg-[#e4e4ed4f]  p-2">
       {/* Add New */}
       <div className="w-full h-[150px] bg-white rounded-lg flex items-center justify-center mb-4 shadow-sm hover:shadow-md transition-shadow">
         <Tabs className="w-full h-full">

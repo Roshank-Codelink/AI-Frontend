@@ -160,13 +160,13 @@ export default function EmployeeContent() {
             {/* Employee Cards - Keep Current Position */}
             <div className="w-full mb-4 sm:mb-5 md:mb-6">
                 <div className="w-full sm:w-[90%] md:w-[85%] lg:w-[60%] xl:w-[50%] flex flex-col sm:flex-row gap-3 sm:gap-4">
-                    <div className="bg-white w-full sm:w-[48%] h-[80px] p-3 sm:p-4 grid grid-cols-4 rounded-lg shadow-sm border border-gray-100">
+                    <div className="bg-white w-full sm:w-[48%] h-[80px] p-3 sm:p-4 grid grid-cols-4 rounded-lg shadow-sm border border-text-gray-100">
                         <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                             <Users className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
                         </div>
                         <div className="col-span-2 flex flex-col items-start justify-center">
-                            <h1 className="text-xs sm:text-sm md:text-[15px] text-gray-600 font-medium">Total Employee</h1>
-                            <p className="text-lg sm:text-xl md:text-[22px] text-gray-800 font-bold">100</p>
+                            <h1 className="text-xs sm:text-sm md:text-[15px] text-text-gray-600 font-medium">Total Employee</h1>
+                            <p className="text-lg sm:text-xl md:text-[22px] text-text-gray-800 font-bold">100</p>
                         </div>
                     </div>
                     <div className="bg-white w-full sm:w-[49%] h-[80px] p-3 sm:p-4 grid grid-cols-4 rounded-lg shadow-sm border border-gray-100">
@@ -285,7 +285,7 @@ export default function EmployeeContent() {
             </div>
 
             {/* Shadcn Pagination - Beautiful Colors */}
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200 min-h-[85px] sm:min-h-[90px] md:min-h-[95px] lg:min-h-[100px]">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 p-3 sm:p-4 md:p-5  border-gray-200 min-h-[85px] sm:min-h-[90px] md:min-h-[95px] lg:min-h-[100px]">
                 {/* Items per page dropdown */}
                 <div className="flex items-center gap-2 order-2 sm:order-1">
                     <span className="text-xs sm:text-sm text-gray-700 font-medium whitespace-nowrap">Show</span>
