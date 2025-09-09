@@ -2,12 +2,23 @@
 
 import { Plus, Users } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useRouter } from "next/navigation";
 
 type Props = {
   onTabChange: (value: string) => void;
 };
 
 export default function AddEmployee({ onTabChange }: Props) {
+  const router = useRouter();
+
+  const handleNewEmployeeClick = () => {
+    router.push("/employee/newemployee");
+  };
+
+  const handleEmployeesClick = () => {
+    router.push("/employee");
+  };
+
   return (
     <div className="w-full h-full  bg-[#e4e4ed4f]  p-2">
       {/* Add New */}
@@ -16,7 +27,7 @@ export default function AddEmployee({ onTabChange }: Props) {
           <TabsList className="grid w-full h-full grid-cols-1 bg-transparent">
             <TabsTrigger
               value="NewEmployee"
-              onClick={() => onTabChange("NewEmployee")}
+              onClick={handleNewEmployeeClick}
               className="w-full h-full text-[#ff8d4f] font-semibold flex flex-col items-center justify-center gap-3 cursor-pointer"
             >
               <div className="w-14 h-14 bg-gray-100 rounded-lg flex items-center justify-center">
@@ -34,7 +45,7 @@ export default function AddEmployee({ onTabChange }: Props) {
           <TabsList className="grid w-full grid-cols-1 bg-transparent">
             <TabsTrigger
               value="Employees"
-              onClick={() => onTabChange("Employees")}
+              onClick={handleEmployeesClick}
               className="w-full text-[#ff8d4f] font-semibold flex items-center justify-center gap-3 p-4 cursor-pointer
                          data-[state=active]:text-[#ff8d4f] data-[state=active]:bg-white rounded-md"
             >

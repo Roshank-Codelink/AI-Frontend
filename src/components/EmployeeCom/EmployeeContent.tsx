@@ -1,6 +1,7 @@
 "use client"
 
-import { Search, Users, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Edit, Trash2 } from "lucide-react";
+import { Search, Users, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Edit, Trash2, Plus } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Employees } from "@/type";
 import {
@@ -27,8 +28,14 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
+import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation";
 
-export default function EmployeeContent() {
+type Props = {
+    onTabChange?: (value: string) => void;
+};
+
+export default function EmployeeContent({ onTabChange }: Props) {
 
     
     const employees: Employees[] = [
@@ -154,6 +161,11 @@ export default function EmployeeContent() {
             status: "Active"
         }
     ];
+    const router = useRouter();
+
+    const handleAddEmployee = () => {
+        router.push("/employee/newemployee");
+      };
 
     return (
         <div className="p-2 sm:p-3 md:p-4 lg:p-5 xl:p-6">
@@ -192,10 +204,25 @@ export default function EmployeeContent() {
                     />
                 </div>
             </div>
+
+            {/* Add Employee Button - Mobile & Tablet */}
+         
+        {/* Add Employee Button - Mobile & Tablet */}
+        <div className="mb-3 lg:hidden flex justify-start">
+          <Button
+            onClick={handleAddEmployee}
+            className="w-auto bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium rounded-md shadow-sm transition-colors"
+          >
+            <Plus className="w-3 h-3" />
+            Add New Employee
+          </Button>
+        </div>
+
+
             <div className="employee-list w-full">
                 <div className="w-full bg-white rounded-lg border border-gray-100">
                     {/* Single Responsive Table */}
-                    <div className="overflow-auto">
+                    <div>
                         <Table className="w-full">
                         <TableHeader className="lg:sticky lg:top-0 lg:z-20">
                                 <TableRow className="bg-gray-50">

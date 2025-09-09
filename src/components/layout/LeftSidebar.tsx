@@ -23,6 +23,15 @@ const NavLinks: NavLinkList[] = [
 export default function AppSidebar({ className }: { className: string }) {
   const pathname = usePathname();
 
+  // Function to check if a route is active
+  const isActive = (url: string) => {
+    if (url === "/employee") {
+      // Employee tab should be active for both /employee and /employee/newemployee
+      return pathname === "/employee" || pathname.startsWith("/employee/");
+    }
+    return pathname === url;
+  };
+
   return (
     <>
       {/* Desktop Vertical Sidebar */}
@@ -36,7 +45,7 @@ export default function AppSidebar({ className }: { className: string }) {
         <TooltipProvider>
           <div className="flex-1 flex flex-col gap-3">
             {NavLinks.map(({ title, url, icon: Icon }) => {
-              const active = pathname === url;
+              const active = isActive(url);
               return (
                 <Tooltip key={title}>
                   <TooltipTrigger asChild>
@@ -83,7 +92,7 @@ export default function AppSidebar({ className }: { className: string }) {
       {/* Mobile Bottom Navigation - No Account Here */}
       <div className="flex md:hidden z-50 fixed bottom-0 left-0 right-0 bg-white border-t justify-around py-2 shadow-t-lg">
         {NavLinks.map(({ title, url, icon: Icon }) => {
-          const active = pathname === url;
+          const active = isActive(url);
           return (
             <Link
               key={title}

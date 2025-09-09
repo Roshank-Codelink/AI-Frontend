@@ -2,11 +2,10 @@
 
 import AddEmployee from "@/components/EmployeeCom/AddEmployee";
 import AddEmployeeForm from "@/components/EmployeeCom/AddEmployeeForm";
-import EmployeeContent from "@/components/EmployeeCom/EmployeeContent";
 import { useState } from "react";
 
-export default function EmployeePage() {
-    const [activeTab, setActiveTab] = useState("Employees");
+export default function NewEmployee() {
+    const [activeTab, setActiveTab] = useState("NewEmployee");
     console.log(activeTab);
 
     return (
@@ -18,7 +17,6 @@ export default function EmployeePage() {
             
             {/* Content Area */}
             <div className="flex-1 h-full overflow-y-auto">
-                {activeTab == "Employees" && <EmployeeContent onTabChange={setActiveTab} />}
                 {activeTab == "NewEmployee" && (
                     <AddEmployeeForm />
                 )}
