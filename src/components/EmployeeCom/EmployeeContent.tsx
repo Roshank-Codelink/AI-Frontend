@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Users, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, Users, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Edit, Trash2 } from "lucide-react";
 
 import { Employees } from "@/type";
 import {
@@ -195,8 +195,8 @@ export default function EmployeeContent() {
             <div className="employee-list w-full">
                 <div className="w-full bg-white rounded-lg border border-gray-100">
                     {/* Single Responsive Table */}
-                    <div className="overflow-x-auto overflow-y-auto max-h-[45vh] sm:max-h-[50vh] md:max-h-[55vh] lg:max-h-[60vh] min-h-[300px] sm:min-h-[350px] md:min-h-[400px]">
-                        <Table className="min-w-[700px] sm:min-w-[800px] lg:min-w-[1000px] w-full">
+                    <div className="overflow-auto">
+                        <Table className="w-full">
                         <TableHeader className="lg:sticky lg:top-0 lg:z-20">
                                 <TableRow className="bg-gray-50">
                                     <TableHead className="w-[80px] sm:w-[100px] text-center lg:bg-gray-50 lg:border-b lg:border-gray-200">
@@ -224,6 +224,11 @@ export default function EmployeeContent() {
                                             <span className="text-xs sm:text-sm font-semibold text-gray-700">Status</span>
                                         </div>
                                     </TableHead>
+                                    <TableHead className="w-[100px] sm:w-[120px] lg:w-[150px] text-center lg:bg-gray-50 lg:border-b lg:border-gray-200">
+                                        <div className="flex items-center justify-center gap-1">
+                                            <span className="text-xs sm:text-sm font-semibold text-gray-700">Action</span>
+                                        </div>
+                                    </TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -234,7 +239,7 @@ export default function EmployeeContent() {
                                         </TableCell>
                                         <TableCell className="w-[200px] sm:w-[250px] lg:w-[300px]">
                                             <div className="flex items-center gap-2 sm:gap-3">
-                                                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden">
+                                                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full ">
                                                     <img 
                                                         src={employee.profileImage} 
                                                         alt={employee.name}
@@ -275,6 +280,22 @@ export default function EmployeeContent() {
                                                 }`}></div>
                                                 {employee.status}
                                             </span>
+                                        </TableCell>
+                                        <TableCell className="w-[100px] sm:w-[120px] lg:w-[150px] text-center">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <button 
+                                                    className="p-1.5 cursor-pointer text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                                    title="Edit Employee"
+                                                >
+                                                    <Edit className="w-4 h-4" />
+                                                </button>
+                                                <button 
+                                                    className="p-1.5 cursor-pointer text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                                    title="Delete Employee"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
                                         </TableCell>
                             </TableRow>
                                 ))}

@@ -1,14 +1,19 @@
 "use client"
 
 import AddEmployee from "@/components/EmployeeCom/AddEmployee";
-import AddEmployeeFrom from "@/components/EmployeeCom/AddEmployeeFrom";
+import AddEmployeeForm from "@/components/EmployeeCom/AddEmployeeForm";
 import EmployeeContent from "@/components/EmployeeCom/EmployeeContent";
 import { useState } from "react";
 
 // ;import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 export default function EmployeePage() {
     const [activeTab, setActiveTab] = useState("Employees");
-    console.log(activeTab);
+   
+    
+   
+
+
+
     return (
         <div className="flex h-full">
             {/* Fixed Sidebar - Only visible on large screens */}
@@ -18,10 +23,11 @@ export default function EmployeePage() {
             
             {/* Content Area */}
             <div className="flex-1 h-full overflow-y-auto">
-
                 {activeTab === "Employees" && <EmployeeContent />}
-                {activeTab === "NewEmployee" && <AddEmployeeFrom/>}
+                {activeTab === "NewEmployee" && (
+                    <AddEmployeeForm />
+                )}
             </div>
         </div>
     );
-} 
+}   
