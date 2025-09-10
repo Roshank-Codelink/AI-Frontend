@@ -22,6 +22,7 @@ export default function Header() {
           {/* Main section - clickable to go to main page */}
           <Link href={`/${mainSection}`} className="cursor-pointer capitalize hover:text-orange-600 transition-colors">
             {mainSection}
+            
           </Link>
           
        

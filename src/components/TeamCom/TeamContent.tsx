@@ -1,7 +1,8 @@
 "use client"
 
-import { Search, Users, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Edit, Trash2, Plus, Filter, Download } from "lucide-react";
+import { Search, Users, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Edit, Trash2, Plus, Filter, Download, PanelLeftClose, PanelLeftOpen, MessageCircle, Bot, HelpCircle, X } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
 
 import { Employees } from "@/type";
 import {
@@ -30,13 +31,17 @@ import {
 } from "@/components/ui/pagination"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation";
-
+import AiChatbox from "@/components/common/AiChatbox";
 type Props = {
     onTabChange?: (value: string) => void;
 };
 
 export default function EmployeeContent({ onTabChange }: Props) {
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
+    const toggleSidebar = () => {
+        setIsSidebarCollapsed(!isSidebarCollapsed);
+    };
 
     const employees: Employees[] = [
         {
@@ -164,15 +169,15 @@ export default function EmployeeContent({ onTabChange }: Props) {
     const router = useRouter();
 
     const handleAddEmployee = () => {
-        router.push("/team/newemployee");
+        router.push("/team/manage");
     };
 
     return (
         <div className="p-2 sm:p-3 md:p-4 lg:p-5 xl:p-6 flex gap-4">
             {/* Employee Cards - Keep Current Position */}
-            <div className="w-[70%]">
+            <div className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-[95%]' : 'w-[70%]'}`}>
                 <div className="w-full mb-4 sm:mb-5 md:mb-6">
-                    <div className="w-full sm:w-[90%] md:w-[85%] lg:w-[70%] xl:w-[70%] flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[65%] xl:w-[60%] flex flex-col sm:flex-row gap-3 sm:gap-4">
                         <div className="bg-white w-full sm:w-[48%] h-[80px] p-3 sm:p-4 grid grid-cols-4 rounded-lg shadow-sm border border-text-gray-100">
                             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
@@ -333,13 +338,13 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                                         className="p-1.5 cursor-pointer text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                                                         title="Edit Employee"
                                                     >
-                                                        <Edit className="w-4 h-4" />
+                                                        <Edit className="w-5 h-5" />
                                                     </button>
                                                     <button
                                                         className="p-1.5 cursor-pointer text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                                         title="Delete Employee"
                                                     >
-                                                        <Trash2 className="w-4 h-4" />
+                                                        <Trash2 className="w-5 h-5" />
                                                     </button>
                                                 </div>
                                             </TableCell>
@@ -393,94 +398,29 @@ export default function EmployeeContent({ onTabChange }: Props) {
                         </Pagination>
                     </div>
                 </div>
+                <div className="fixed bottom-6 right-6 z-50">
+                <Button
+                    onClick={toggleSidebar}
+                    className="w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 border-2 border-orange-400"
+                >
+                    {isSidebarCollapsed ? (
+                        <MessageCircle className="w-6 h-6" />
+                    ) : (
+                        <X className="w-6 h-6" />
+                    )}
+                </Button>
             </div>
-            <div className="w-[28%] space-y-4">
-                {/* Quick Stats */}
-                <div className="bg-white p-4 rounded-lg border border-gray-100">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Quick Stats</h3>
-                    <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Total Employees</span>
-                            <span className="text-lg font-bold text-orange-600">100</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Active Today</span>
-                            <span className="text-lg font-bold text-green-600">85</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">New This Week</span>
-                            <span className="text-lg font-bold text-blue-600">8</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Recent Activity */}
-                <div className="bg-white p-4 rounded-lg border border-gray-100">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Recent Activity</h3>
-                    <div className="space-y-3">
-                        <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                            <div className="flex-1">
-                                <p className="text-sm text-gray-900">New employee added</p>
-                                <p className="text-xs text-gray-500">2 hours ago</p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                            <div className="flex-1">
-                                <p className="text-sm text-gray-900">Profile updated</p>
-                                <p className="text-xs text-gray-500">4 hours ago</p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                            <div className="flex-1">
-                                <p className="text-sm text-gray-900">Status changed</p>
-                                <p className="text-xs text-gray-500">6 hours ago</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Quick Actions */}
-                <div className="bg-white p-4 rounded-lg border border-gray-100">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Quick Actions</h3>
-                    <div className="space-y-2">
-                    
-                        <Button variant="outline" className="w-full justify-start text-sm h-9">
-                            <Download className="w-4 h-4 mr-2" />
-                            Export Data
-                        </Button>
-                        <Button variant="outline" className="w-full justify-start text-sm h-9">
-                            <Filter className="w-4 h-4 mr-2" />
-                            Advanced Filter
-                        </Button>
-                    </div>
-                </div>
-
-                {/* Team Overview */}
-                <div className="bg-white p-4 rounded-lg border border-gray-100">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Team Overview</h3>
-                    <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Department</span>
-                            <span className="text-sm font-medium text-gray-900">Engineering</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Manager</span>
-                            <span className="text-sm font-medium text-gray-900">John Doe</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Location</span>
-                            <span className="text-sm font-medium text-gray-900">Remote</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Avg. Experience</span>
-                            <span className="text-sm font-medium text-gray-900">3.2 years</span>
-                        </div>
-                    </div>
-                </div>
+              
             </div>
+
+            <div className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-[28%] h-[85vh]  sticky top-7 opacity-100'}`}>
+               
+               <AiChatbox/>
+               
+            </div>
+
+            {/* Fixed Floating Action Button - Bottom Right */}
+         
 
         </div>
     );

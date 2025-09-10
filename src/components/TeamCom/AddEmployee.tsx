@@ -12,7 +12,7 @@ export default function AddEmployee({ onTabChange }: Props) {
   const router = useRouter();
 
   const handleNewEmployeeClick = () => {
-    router.push("/team/newemployee");
+    router.push("/team/manage");
   };
 
   const handleEmployeesClick = () => {
@@ -26,7 +26,7 @@ export default function AddEmployee({ onTabChange }: Props) {
         <Tabs className="w-full h-full">
           <TabsList className="grid w-full h-full grid-cols-1 bg-transparent">
             <TabsTrigger
-              value="NewEmployee"
+              value="Manage"
               onClick={handleNewEmployeeClick}
               className="w-full h-full text-[#ff8d4f] font-semibold flex flex-col items-center justify-center gap-3 cursor-pointer"
             >

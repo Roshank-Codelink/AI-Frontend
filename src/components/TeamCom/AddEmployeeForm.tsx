@@ -1,10 +1,12 @@
 "use client"
 
 import { useState } from "react";
-import { User, Mail, Phone, Calendar as CalendarIcon, Upload } from "lucide-react";
+import { User, Mail, Phone, Calendar as CalendarIcon, Upload, ChevronDown, Globe } from "lucide-react";
+import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { format } from "date-fns";
 
 export default function AddEmployeeForm() {
@@ -12,6 +14,46 @@ export default function AddEmployeeForm() {
     const [joinDate, setJoinDate] = useState<Date>();
     const [dateOfBirthOpen, setDateOfBirthOpen] = useState(false);
     const [joinDateOpen, setJoinDateOpen] = useState(false);
+
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [selectedCountry, setSelectedCountry] = useState({
+        code: "+91",
+        countryCode: "IN",
+        name: "India"
+    });
+
+    const countries = [
+        { code: "+91", countryCode: "IN", name: "India" },
+        { code: "+1", countryCode: "US", name: "United States" },
+        { code: "+44", countryCode: "GB", name: "United Kingdom" },
+        { code: "+61", countryCode: "AU", name: "Australia" },
+        { code: "+49", countryCode: "DE", name: "Germany" },
+        { code: "+33", countryCode: "FR", name: "France" },
+        { code: "+81", countryCode: "JP", name: "Japan" },
+        { code: "+86", countryCode: "CN", name: "China" },
+        { code: "+55", countryCode: "BR", name: "Brazil" },
+        { code: "+7", countryCode: "RU", name: "Russia" },
+        { code: "+971", countryCode: "AE", name: "UAE" },
+        { code: "+966", countryCode: "SA", name: "Saudi Arabia" },
+        { code: "+92", countryCode: "PK", name: "Pakistan" },
+        { code: "+880", countryCode: "BD", name: "Bangladesh" },
+        { code: "+94", countryCode: "LK", name: "Sri Lanka" },
+        { code: "+977", countryCode: "NP", name: "Nepal" },
+        { code: "+975", countryCode: "BT", name: "Bhutan" },
+        { code: "+93", countryCode: "AF", name: "Afghanistan" },
+        { code: "+98", countryCode: "IR", name: "Iran" },
+        { code: "+90", countryCode: "TR", name: "Turkey" },
+        { code: "+39", countryCode: "IT", name: "Italy" },
+        { code: "+34", countryCode: "ES", name: "Spain" },
+        { code: "+31", countryCode: "NL", name: "Netherlands" },
+        { code: "+46", countryCode: "SE", name: "Sweden" },
+        { code: "+47", countryCode: "NO", name: "Norway" },
+        { code: "+45", countryCode: "DK", name: "Denmark" },
+        { code: "+41", countryCode: "CH", name: "Switzerland" },
+        { code: "+43", countryCode: "AT", name: "Austria" },
+        { code: "+32", countryCode: "BE", name: "Belgium" },
+        { code: "+351", countryCode: "PT", name: "Portugal" }
+    ];
 
     return (
         <div className="p-4 sm:p-6">
@@ -34,12 +76,12 @@ export default function AddEmployeeForm() {
                             {/* Name */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                                    <User className="w-4 h-4" />
+                                    <User className="w-4 h-4 text-orange-500" />
                                     Full Name *
                                 </label>
                                 <input
                                     type="text"
-                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg   focus:ring-orange-500 focus:border-transparent transition-colors"
                                     placeholder="Enter full name"
                                 />
                             </div>
@@ -47,28 +89,86 @@ export default function AddEmployeeForm() {
                             {/* Email */}
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                                    <Mail className="w-4 h-4" />
+                                    <Mail className="w-4 h-4 text-orange-500" />
                                     Email Address *
                                 </label>
                                 <input
                                     type="email"
-                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg  focus:ring-orange-500 focus:border-transparent transition-colors"
                                     placeholder="Enter email address"
                                 />
                             </div>
                         </div>
 
-                        {/* Phone - Single field */}
+                        {/* Phone - Connected Country Code + Number */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                                <Phone className="w-4 h-4" />
+                                <Phone className="w-4 h-4 text-orange-500" />
                                 Phone Number *
                             </label>
-                            <input
-                                type="tel"
-                                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
-                                placeholder="Enter phone number"
-                            />
+                            <div className="flex border border-gray-300 rounded-lg overflow-hidden  transition-all">
+                                {/* Country Code Selector */}
+                                <div className="relative">
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <Button
+                                                variant="outline"
+                                                className="h-11 px-3 border-0 bg-gray-50 hover:bg-orange-50 hover:border-orange-200 focus:ring-2 focus:ring-orange-500 active:ring-2 active:ring-orange-500 active:bg-orange-100 focus:outline-none rounded-none border-r border-gray-300"
+                                            >
+                                                <div className="flex items-center gap-2">
+                                                    <ReactCountryFlag 
+                                                        countryCode={selectedCountry.countryCode}
+                                                        svg
+                                                        style={{
+                                                            width: '20px',
+                                                            height: '15px',
+                                                            borderRadius: '2px'
+                                                        }}
+                                                    />
+                                                    <span className="text-sm font-medium text-gray-700">{selectedCountry.code}</span>
+                                                    <ChevronDown className="w-4 h-4 text-gray-500" />
+                                                </div>
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-80 p-0" align="start">
+                                            <div className="max-h-60 overflow-y-auto">
+                                                {countries.map((country, index) => (
+                                                    <button
+                                                        key={index}
+                                                        onClick={() => setSelectedCountry(country)}
+                                                        className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-orange-50 transition-colors ${
+                                                            selectedCountry.code === country.code ? 'bg-orange-50 border-r-2 border-orange-500' : ''
+                                                        }`}
+                                                    >
+                                                        <ReactCountryFlag 
+                                                            countryCode={country.countryCode}
+                                                            svg
+                                                            style={{
+                                                                width: '24px',
+                                                                height: '18px',
+                                                                borderRadius: '3px'
+                                                            }}
+                                                        />
+                                                        <div className="flex-1">
+                                                            <div className="text-sm font-medium text-gray-900">{country.name}</div>
+                                                            <div className="text-xs text-gray-500">{country.code}</div>
+                                                        </div>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </PopoverContent>
+                                    </Popover>
+                                </div>
+                                
+                                {/* Phone Number Input */}
+                                <input
+                                    type="tel"
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                    className="flex-1 h-11 px-4 text-sm border-0 bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 active:ring-2 active:ring-orange-500 active:bg-orange-50"
+                                    placeholder="Enter phone number"
+                                />
+                            </div>
                         </div>
 
                         {/* Date of Birth and Join Date - Horizontal */}
@@ -83,7 +183,7 @@ export default function AddEmployeeForm() {
                                      <PopoverTrigger asChild>
                                          <Button
                                              variant="outline"
-                                             className="w-full justify-start text-left font-normal px-3 py-2.5 h-auto border-gray-300 bg-transparent hover:bg-orange-50 hover:border-orange-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+                                             className="w-full justify-start text-left font-normal px-3 py-2.5 h-auto border-gray-300 bg-transparent   focus:ring-orange-500 focus:border-transparent transition-colors"
                                          >
                                              <CalendarIcon className="mr-2 h-4 w-4 text-orange-500" />
                                              {dateOfBirth ? format(dateOfBirth, "PPP") : "Select date of birth"}
@@ -114,7 +214,7 @@ export default function AddEmployeeForm() {
                                      <PopoverTrigger asChild>
                                          <Button
                                              variant="outline"
-                                             className="w-full justify-start text-left font-normal px-3 py-2.5 h-auto border-gray-300 bg-transparent hover:bg-orange-50 hover:border-orange-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+                                             className="w-full justify-start text-left font-normal px-3 py-2.5 h-auto border-gray-300 bg-transparent focus:ring-orange-500 focus:border-transparent transition-colors"
                                          >
                                              <CalendarIcon className="mr-2 h-4 w-4 text-orange-500" />
                                              {joinDate ? format(joinDate, "PPP") : "Select join date"}
@@ -139,7 +239,7 @@ export default function AddEmployeeForm() {
                         {/* Profile Image Upload */}
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                                <Upload className="w-4 h-4" />
+                                <Upload className="w-4 h-4 text-orange-500" />
                                 Profile Picture
                             </label>
                             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
