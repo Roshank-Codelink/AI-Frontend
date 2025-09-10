@@ -37,7 +37,7 @@ export default function AppSidebar({ className }: { className: string }) {
       {/* Desktop Vertical Sidebar */}
       <div className={`hidden md:flex h-screen w-20 bg-white border-r flex-col items-center py-6 ${className}`}>
         {/* Logo */}
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-300 flex items-center justify-center shadow mb-10">
+        <div className="w-12 h-12 rounded-[5px] bg-gradient-to-br from-orange-500 to-orange-300 flex items-center justify-center shadow mb-10">
           <span className="text-white font-bold text-xl">Yp</span>
         </div>
 
@@ -51,17 +51,17 @@ export default function AppSidebar({ className }: { className: string }) {
                   <TooltipTrigger asChild>
                     <Link
                       href={url}
-                      className={`relative flex items-center justify-center w-14 h-14 rounded-2xl transition-all
+                      className={`relative flex items-center justify-center w-14 h-14 rounded-[5px] transition-all
                         ${active ? "bg-orange-100 text-orange-600 shadow" : "text-gray-500 hover:bg-gray-100"}`}
                     >
                       <Icon size={26} />
-                      {active && <span className="absolute -right-3 w-1.5 h-10 bg-orange-500 rounded-full" />}
+                      {active && <span className="absolute -right-3 w-1.5 h-10 bg-orange-500 rounded-[5px]" />}
                     </Link>
                   </TooltipTrigger>
 
                   <TooltipContent
                     side="right"
-                    className="relative bg-orange-500 text-white text-sm font-medium px-3 py-1.5 rounded-md shadow-md"
+                    className="relative bg-orange-500 text-white text-sm font-medium px-3 py-1.5 rounded-[5px] shadow-md"
                   >
                     {title}
                   </TooltipContent>
@@ -80,7 +80,7 @@ export default function AppSidebar({ className }: { className: string }) {
               </TooltipTrigger>
               <TooltipContent
                 side="right"
-                className="relative bg-orange-500 text-white text-sm font-medium px-3 py-1.5 rounded-md shadow-md"
+                className="relative bg-orange-500 text-white text-sm font-medium px-3 py-1.5 rounded-[5px] shadow-md"
               >
                 Account
               </TooltipContent>

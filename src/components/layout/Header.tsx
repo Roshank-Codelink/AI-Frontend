@@ -27,7 +27,7 @@ export default function Header() {
           
        
           {subSection && (
-            <span className="text-black text-[18px] font-normal ml-2">
+            <span className="text-black text-[12px] font-normal ml-2">
               <Link href={pathname} className="cursor-pointer capitalize hover:text-gray-700 transition-colors">
                 / {subSection}
               </Link>

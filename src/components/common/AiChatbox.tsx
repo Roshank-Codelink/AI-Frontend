@@ -1,8 +1,12 @@
 
 
-export default function AiChatbox() {
+type Props = {
+    onClose?: () => void;
+};
+
+export default function AiChatbox({ onClose }: Props) {
     return (
-        <div className="w-full h-full bg-white rounded-lg shadow-lg border border-orange-200 flex flex-col">
+        <div className="w-full h-full bg-white rounded-[5px] flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-orange-200 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-t-lg">
                 <div className="flex items-center gap-2">
@@ -11,7 +15,11 @@ export default function AiChatbox() {
                     </svg>
                     <h3 className="font-semibold text-sm">AI Assistant</h3>
                 </div>
-                <button className="text-white hover:bg-white/20 p-1 rounded">
+                <button 
+                    onClick={onClose}
+                    className="text-white hover:bg-white/20 p-1 rounded transition-colors"
+                    title="Close AI Assistant"
+                >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>

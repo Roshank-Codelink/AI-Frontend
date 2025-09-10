@@ -176,23 +176,23 @@ export default function EmployeeContent({ onTabChange }: Props) {
             {/* Employee Cards - Keep Current Position */}
             <div className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-[95%]' : 'w-[70%]'}`}>
                 <div className="w-full mb-4 sm:mb-5 md:mb-6">
-                    <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[65%] xl:w-[65%] flex flex-col sm:flex-row gap-2 sm:gap-3">
-                        <div className="bg-white w-full sm:w-[48%] h-[80px] p-3 sm:p-4 grid grid-cols-4 rounded-lg shadow-sm border border-text-gray-100">
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <div className="w-full sm:w-[60%] md:w-[65%] lg:w-[60%] xl:w-[48%] flex flex-col sm:flex-row gap-2 sm:gap-3">
+                        <div className="bg-white w-full sm:w-[48%] h-[65px] p-3 sm:p-4 flex items-center gap-3 rounded-[5px] border border-text-gray-100">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-[5px] flex items-center justify-center flex-shrink-0">
                                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
                             </div>
-                            <div className="col-span-2 flex flex-col items-start justify-center">
-                                <h1 className="text-xs sm:text-sm md:text-[15px] text-text-gray-600 font-medium">Total Employee</h1>
-                                <p className="text-lg sm:text-xl md:text-[22px] text-text-gray-800 font-bold">100</p>
+                            <div className="flex flex-col justify-center min-w-0 flex-1">
+                                <h5 className="text-[12px] sm:text-[12px] text-text-gray-600 font-medium leading-tight">Total Employee</h5>
+                                <p className="text-[14px] sm:text-[14px] text-text-gray-800 font-bold leading-tight">100</p>
                             </div>
                         </div>
-                        <div className="bg-white w-full sm:w-[49%] h-[80px] p-3 sm:p-4 grid grid-cols-4 rounded-lg shadow-sm border border-gray-100">
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <div className="bg-white w-full sm:w-[49%] h-[65px] p-3 sm:p-4 flex items-center gap-3 rounded-[5px] border border-text-gray-100">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-[5px] flex items-center justify-center flex-shrink-0">
                                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
                             </div>
-                            <div className="col-span-2 flex flex-col items-start justify-center">
-                                <h1 className="text-xs sm:text-sm md:text-[15px] text-gray-600 font-medium">Active Employee</h1>
-                                <p className="text-lg sm:text-xl md:text-[22px] text-gray-800 font-bold">85</p>
+                            <div className="flex flex-col justify-center min-w-0 flex-1">
+                                <h5 className="text-[12px] sm:text-[12px] text-text-gray-600 font-medium leading-tight">Active Employee</h5>
+                                <p className="text-[14px] sm:[14px] text-text-gray-800 font-bold leading-tight">85</p>
                             </div>
                         </div>
                     </div>
@@ -200,18 +200,19 @@ export default function EmployeeContent({ onTabChange }: Props) {
 
                 {/* Search Bar and Filter - Modern Blue Theme */}
                 <div className="mb-4 sm:mb-5 md:mb-6">
-                    <div className="flex flex-col sm:flex-row gap-3 w-full max-w-4xl">
-                        <div className="relative flex-1">
+                    
+                    <div className="flex flex-col sm:flex-row gap-3 w-full max-w-2xl">
+                        <div className="relative w-full sm:w-80">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-4 h-4" />
                             <input
                                 type="text"
                                 placeholder="Search employees here..."
-                                className="w-full pl-10 pr-4 py-2 h-10 text-sm border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-blue-50 focus:bg-white transition-all duration-200"
+                                className="w-full pl-10 pr-4 py-2 h-10 text-sm border border-text-gray-100 rounded-[5px]"
                             />
                         </div>
                         <div className="flex gap-2">
                             <Select defaultValue="all">
-                                <SelectTrigger className="w-48 h-10 text-sm border-blue-200 bg-blue-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                <SelectTrigger className="w-48 h-10 text-sm rounded-[5px] ">
                                     <SelectValue placeholder="Filter by Status & Role" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -253,32 +254,33 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                     <TableRow className="bg-gray-50">
                                         <TableHead className="w-[80px] sm:w-[100px] text-center lg:bg-gray-50 lg:border-b lg:border-gray-200">
                                             <div className="flex items-center justify-center gap-1">
-                                                <span className="text-xs sm:text-sm font-semibold text-gray-700">ID</span>
+                                                <input type="checkbox" className="w-4 h-4 rounded-[5px] border-gray-300 text-orange-500 focus:ring-orange-500" />
+                                                <span className="text-sm font-medium text-gray-600">ID</span>
                                             </div>
                                         </TableHead>
                                         <TableHead className="w-[200px] sm:w-[250px] lg:w-[300px] lg:bg-gray-50 lg:border-b lg:border-gray-200">
                                             <div className="flex items-center gap-1">
-                                                <span className="text-xs sm:text-sm font-semibold text-gray-700">Name</span>
+                                                <span className="text-sm font-medium text-gray-600">Name</span>
                                             </div>
                                         </TableHead>
                                         <TableHead className="w-[120px] sm:w-[150px] lg:w-[200px] lg:bg-gray-50 lg:border-b lg:border-gray-200">
                                             <div className="flex items-center gap-1">
-                                                <span className="text-xs sm:text-sm font-semibold text-gray-700">Role</span>
+                                                <span className="text-sm font-medium text-gray-600">Role</span>
                                             </div>
                                         </TableHead>
                                         <TableHead className="w-[180px] sm:w-[220px] lg:w-[250px] lg:bg-gray-50 lg:border-b lg:border-gray-200">
                                             <div className="flex items-center gap-1">
-                                                <span className="text-xs sm:text-sm font-semibold text-gray-700">Phone / Email</span>
+                                                <span className="text-sm font-medium text-gray-600">Phone no / Email</span>
                                             </div>
                                         </TableHead>
                                         <TableHead className="w-[100px] sm:w-[120px] lg:w-[150px] text-center lg:bg-gray-50 lg:border-b lg:border-gray-200">
                                             <div className="flex items-center justify-center gap-1">
-                                                <span className="text-xs sm:text-sm font-semibold text-gray-700">Status</span>
+                                                <span className="text-sm font-medium text-gray-600">Status</span>
                                             </div>
                                         </TableHead>
                                         <TableHead className="w-[100px] sm:w-[120px] lg:w-[150px] text-center lg:bg-gray-50 lg:border-b lg:border-gray-200">
                                             <div className="flex items-center justify-center gap-1">
-                                                <span className="text-xs sm:text-sm font-semibold text-gray-700">Action</span>
+                                                <span className="text-sm font-medium text-gray-600">Action</span>
                                             </div>
                                         </TableHead>
                                     </TableRow>
@@ -286,38 +288,41 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                 <TableBody>
                                     {employees.map((employee) => (
                                         <TableRow key={employee.id} className="hover:bg-gray-50 transition-colors border-b border-gray-100">
-                                            <TableCell className="w-[80px] sm:w-[100px] text-center text-gray-600 font-medium">
-                                                {employee.id}
+                                            <TableCell className="w-[80px] sm:w-[100px] text-center text-gray-800 text-sm">
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <input type="checkbox" className="w-4 h-4 rounded-[5px] border-gray-300 text-orange-500 focus:ring-orange-500" />
+                                                    <span className="font-medium">{employee.id}</span>
+                                                </div>
                                             </TableCell>
                                             <TableCell className="w-[200px] sm:w-[250px] lg:w-[300px]">
                                                 <div className="flex items-center gap-2 sm:gap-3">
-                                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full ">
+                                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden">
                                                         <img
                                                             src={employee.profileImage}
                                                             alt={employee.name}
-                                                            className="w-full h-full object-cover"
+                                                            className="w-full h-full object-cover rounded-full"
                                                             onError={(e) => {
                                                                 const target = e.target as HTMLImageElement;
                                                                 target.style.display = 'none';
                                                                 target.nextElementSibling?.classList.remove('hidden');
                                                             }}
                                                         />
-                                                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full items-center justify-center text-white font-semibold text-xs sm:text-sm hidden">
+                                                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm hidden">
                                                             {employee.avatar}
                                                         </div>
                                                     </div>
                                                     <div className="min-w-0">
-                                                        <div className="font-semibold text-gray-900 text-sm sm:text-base truncate">{employee.name}</div>
-                                                        <div className="text-xs sm:text-sm text-gray-500">{employee.joinDate}</div>
+                                                        <div className="font-semibold text-gray-900 text-sm truncate">{employee.name}</div>
+                                                        <div className="text-xs text-gray-500">{employee.joinDate}</div>
                                                     </div>
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="w-[120px] sm:w-[150px] lg:w-[200px] text-gray-700 text-sm sm:text-base">
+                                            <TableCell className="w-[120px] sm:w-[150px] lg:w-[200px] text-gray-800 text-sm">
                                                 {employee.role}
                                             </TableCell>
                                             <TableCell className="w-[180px] sm:w-[220px] lg:w-[250px]">
-                                                <div className="text-gray-600">
-                                                    <div className="font-medium text-xs sm:text-sm">{employee.phone}</div>
+                                                <div className="text-gray-800">
+                                                    <div className="font-medium text-sm">{employee.phone}</div>
                                                     <div className="text-xs text-gray-500 truncate">{employee.email}</div>
                                                 </div>
                                             </TableCell>
@@ -397,25 +402,24 @@ export default function EmployeeContent({ onTabChange }: Props) {
                         </Pagination>
                     </div>
                 </div>
-                <div className="fixed bottom-6 right-6 z-50">
-                <Button
-                    onClick={toggleSidebar}
-                    className="w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 border-2 border-orange-400"
-                >
-                    {isSidebarCollapsed ? (
-                        <MessageCircle className="w-6 h-6" />
-                    ) : (
-                        <X className="w-6 h-6" />
-                    )}
-                </Button>
-            </div>
+                {isSidebarCollapsed && (
+                    <div className="fixed bottom-6 right-6 z-50">
+                        <Button
+                            onClick={toggleSidebar}
+                            className="w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 border-2 border-orange-400"
+                            title="Open AI Assistant"
+                        >
+                            <MessageCircle className="w-6 h-6" />
+                        </Button>
+                    </div>
+                )}
               
             </div>
 
             <div className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-[28%] h-[85vh]  sticky top-7 opacity-100'}`}>
-               
-               <AiChatbox/>
-               
+                
+                <AiChatbox onClose={toggleSidebar} />
+                
             </div>
 
             {/* Fixed Floating Action Button - Bottom Right */}
