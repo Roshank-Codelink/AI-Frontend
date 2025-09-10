@@ -176,7 +176,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
             {/* Employee Cards - Keep Current Position */}
             <div className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-[95%]' : 'w-[70%]'}`}>
                 <div className="w-full mb-4 sm:mb-5 md:mb-6">
-                    <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[65%] xl:w-[60%] flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <div className="w-full sm:w-[90%] md:w-[75%] lg:w-[65%] xl:w-[65%] flex flex-col sm:flex-row gap-2 sm:gap-3">
                         <div className="bg-white w-full sm:w-[48%] h-[80px] p-3 sm:p-4 grid grid-cols-4 rounded-lg shadow-sm border border-text-gray-100">
                             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
