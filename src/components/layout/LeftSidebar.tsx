@@ -15,7 +15,7 @@ import AccountDropdown from "./Useraccount";
 
 const NavLinks: NavLinkList[] = [
   { title: "Home", url: "/", icon: Home },
-  { title: "Employee", url: "/employee", icon: Users },
+  { title: "Team", url: "/team", icon: Users },
   { title: "Summary", url: "/summary", icon: FileText },
   { title: "Payout", url: "/payout", icon: Wallet },
 ];
@@ -25,9 +25,9 @@ export default function AppSidebar({ className }: { className: string }) {
 
   // Function to check if a route is active
   const isActive = (url: string) => {
-    if (url === "/employee") {
+    if (url === "/team") {
       // Employee tab should be active for both /employee and /employee/newemployee
-      return pathname === "/employee" || pathname.startsWith("/employee/");
+      return pathname === "/team" || pathname.startsWith("/team/");
     }
     return pathname === url;
   };

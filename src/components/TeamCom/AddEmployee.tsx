@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, Users } from "lucide-react";
+import { Plus, Users, User } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
 
@@ -12,15 +12,15 @@ export default function AddEmployee({ onTabChange }: Props) {
   const router = useRouter();
 
   const handleNewEmployeeClick = () => {
-    router.push("/employee/newemployee");
+    router.push("/team/newemployee");
   };
 
   const handleEmployeesClick = () => {
-    router.push("/employee");
+    router.push("/team");
   };
 
   return (
-    <div className="w-full h-full  bg-[#e4e4ed4f]  p-2">
+    <div className="w-full h-full  bg-[#e4e4ed4f]  p-4">
       {/* Add New */}
       <div className="w-full h-[150px] bg-white rounded-lg flex items-center justify-center mb-4 shadow-sm hover:shadow-md transition-shadow">
         <Tabs className="w-full h-full">
@@ -30,8 +30,8 @@ export default function AddEmployee({ onTabChange }: Props) {
               onClick={handleNewEmployeeClick}
               className="w-full h-full text-[#ff8d4f] font-semibold flex flex-col items-center justify-center gap-3 cursor-pointer"
             >
-              <div className="w-14 h-14 bg-gray-100 rounded-lg flex items-center justify-center">
-                <Plus className="w-10 h-10 text-gray-600" />
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                <Plus className="w-12 h-12 text-gray-600" />
               </div>
               <span className="text-[#DDDDDD] text-base font-medium">Add New</span>
             </TabsTrigger>
@@ -41,16 +41,16 @@ export default function AddEmployee({ onTabChange }: Props) {
 
       {/* Employees */}
       <div className="w-full">
-        <Tabs defaultValue="Employees" className="w-full">
+        <Tabs defaultValue="Team" className="w-full">
           <TabsList className="grid w-full grid-cols-1 bg-transparent">
             <TabsTrigger
-              value="Employees"
+              value="Team"
               onClick={handleEmployeesClick}
-              className="w-full text-[#ff8d4f] font-semibold flex items-center justify-center gap-3 p-4 cursor-pointer
+              className="w-full text-[#ff8d4f]   font-semibold flex items-center justify-center gap-3 p-4 cursor-pointer
                          data-[state=active]:text-[#ff8d4f] data-[state=active]:bg-white rounded-md"
             >
-              <Users className="w-10 h-10 text-gray-600" />
-              <span className="text-base font-medium">Employees</span>
+              <User  className="text-orange-500 flex-shrink-0" />
+              <span className="text-[18px] font-medium">Team</span>
             </TabsTrigger>
           </TabsList>
         </Tabs>

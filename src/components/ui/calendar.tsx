@@ -29,7 +29,7 @@ function Calendar({
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
-        "bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+        "bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent [&_button[data-selected=true]]:!bg-orange-500 [&_button[data-selected=true]]:!text-white [&_button[aria-selected=true]]:!bg-orange-500 [&_button[aria-selected=true]]:!text-white [&_button[data-selected]]:!bg-orange-500 [&_button[data-selected]]:!text-white",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
@@ -70,7 +70,7 @@ function Calendar({
           defaultClassNames.dropdowns
         ),
         dropdown_root: cn(
-          "relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded-md",
+          "relative has-focus:border-ring border border-input shadow-xs  rounded-md",
           defaultClassNames.dropdown_root
         ),
         dropdown: cn(
@@ -100,7 +100,7 @@ function Calendar({
           defaultClassNames.week_number
         ),
         day: cn(
-          "relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none",
+          "relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none [&_button[data-selected=true]]:!bg-orange-500 [&_button[data-selected=true]]:!text-white [&_button[aria-selected=true]]:!bg-orange-500 [&_button[aria-selected=true]]:!text-white [&_button[data-selected]]:!bg-orange-500 [&_button[data-selected]]:!text-white",
           defaultClassNames.day
         ),
         range_start: cn(
@@ -110,7 +110,7 @@ function Calendar({
         range_middle: cn("rounded-none", defaultClassNames.range_middle),
         range_end: cn("rounded-r-md bg-accent", defaultClassNames.range_end),
         today: cn(
-          "bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none",
+          "font-semibold rounded-md data-[selected=true]:rounded-none data-[selected=true]:!bg-orange-500 data-[selected=true]:!text-white",
           defaultClassNames.today
         ),
         outside: cn(

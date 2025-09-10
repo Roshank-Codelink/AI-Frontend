@@ -1,12 +1,12 @@
 "use client"
 
-import AddEmployee from "@/components/EmployeeCom/AddEmployee";
-import AddEmployeeForm from "@/components/EmployeeCom/AddEmployeeForm";
+import AddEmployee from "@/components/TeamCom/AddEmployee";
+import AddEmployeeForm from "@/components/TeamCom/AddEmployeeForm";
 import { useState } from "react";
 
 export default function NewEmployee() {
     const [activeTab, setActiveTab] = useState("NewEmployee");
-    console.log(activeTab);
+  
 
     return (
         <div className="flex h-full">
