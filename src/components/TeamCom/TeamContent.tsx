@@ -1,14 +1,13 @@
 "use client"
 
-import { Search, Users, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Edit, Trash2, Plus, Filter, Download, PanelLeftClose, PanelLeftOpen, MessageCircle, Bot, HelpCircle, X } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Search, Users,  Edit, Trash2, Plus, MessageCircle, X } from "lucide-react";
+
 import { useState } from "react";
 
 import { Employees } from "@/type";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -303,7 +302,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                                                 target.nextElementSibling?.classList.remove('hidden');
                                                             }}
                                                         />
-                                                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm hidden">
+                                                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full items-center justify-center text-white font-semibold text-xs sm:text-sm hidden">
                                                             {employee.avatar}
                                                         </div>
                                                     </div>

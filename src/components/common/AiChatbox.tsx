@@ -30,7 +30,7 @@ export default function AiChatbox() {
                     <div>
                         <h3 className="text-base font-bold text-gray-900">How can I help?</h3>
                         <p className="text-xs text-gray-600 mt-1">
-                            I'm here to assist you with team management tasks.
+                            I&apos;m here to assist you with team management tasks.
                         </p>
                     </div>
                     

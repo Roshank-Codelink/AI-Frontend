@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { User, Mail, Phone, Calendar as CalendarIcon, Upload, ChevronDown, Globe } from "lucide-react";
+import { User, Mail, Phone, Calendar as CalendarIcon, Upload, ChevronDown } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";

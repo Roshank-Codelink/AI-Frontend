@@ -1,11 +1,11 @@
 "use client";
 
-import { Plus, Users, User } from "lucide-react";
+import { Plus, User } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  onTabChange: (value: string) => void;
+  onTabChange?: (value: string) => void;
 };
 
 export default function AddEmployee({ onTabChange }: Props) {
@@ -26,7 +26,7 @@ export default function AddEmployee({ onTabChange }: Props) {
         <Tabs className="w-full h-full">
           <TabsList className="grid w-full h-full grid-cols-1 bg-transparent">
             <TabsTrigger
-              value="Manage"
+              value="manage"
               onClick={handleNewEmployeeClick}
               className="w-full h-full text-[#ff8d4f] font-semibold flex flex-col items-center justify-center gap-3 cursor-pointer"
             >
