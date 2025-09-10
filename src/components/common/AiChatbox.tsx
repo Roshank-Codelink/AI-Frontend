@@ -74,14 +74,14 @@ export default function AiChatbox({ onClose }: Props) {
             </div>
 
             {/* Input Area - Fixed at Bottom */}
-            <div className="p-4 border-t border-orange-200 flex-shrink-0">
+            <div className="p-4  flex-shrink-0">
                 <div className="flex gap-2">
                     <input
                         type="text"
                         placeholder="Type your message..."
-                        className="flex-1 px-3 py-2 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                        className="flex-1 px-3 py-2 border outline-none rounded-[5px]  text-sm"
                     />
-                    <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-lg flex items-center justify-center">
+                    <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-[5px] flex items-center justify-center">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>

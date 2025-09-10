@@ -207,7 +207,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                             <input
                                 type="text"
                                 placeholder="Search employees here..."
-                                className="w-full pl-10 pr-4 py-2 h-10 text-sm border border-text-gray-100 rounded-[5px]"
+                                className="w-full pl-10 outline-none pr-4 py-2 h-10 text-sm border border-text-gray-100 rounded-[5px]"
                             />
                         </div>
                         <div className="flex gap-2">
