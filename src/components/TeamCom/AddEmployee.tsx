@@ -18,7 +18,10 @@ export default function AddEmployee({ onTabChange }: Props) {
 
   const handleEmployeesClick = () => {
     onTabChange?.("Team");
-    router.push("/team");
+    // Only navigate if we're not already on the team page
+    if (window.location.pathname !== "/team") {
+      router.push("/team");
+    }
   };
 
   return (
