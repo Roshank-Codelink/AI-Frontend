@@ -212,7 +212,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                         </div>
                         <div className="flex gap-2">
                             <Select defaultValue="all" >
-                                <SelectTrigger className="w-48  text-sm border border-text-gray-100 rounded-[5px]">
+                                <SelectTrigger className="w-48  text-sm border border-text-gray-100 rounded-[5px] shadow-none">
                                     <SelectValue placeholder="Filter by Status & Role" />
                                 </SelectTrigger>
                                 <SelectContent>
