@@ -20,15 +20,16 @@ export default function AddEmployee({ onTabChange }: Props) {
   };
 
   return (
-    <div className="w-full h-full bg-[#e4e4ed4f] p-3">
+    <div className="w-full h-full bg-[#e4e4ed4f] p-4">
       {/* Add New */}
-      <div className="w-full h-[150px] bg-white rounded-[5px] flex items-center justify-center mb-3">
+      <div className="w-full h-[150px] bg-white rounded-[5px] flex items-center justify-center mb-4">
         <Tabs className="w-full h-full">
           <TabsList className="grid w-full h-full grid-cols-1 bg-transparent">
             <TabsTrigger
               value="manage"
+              
               onClick={handleNewEmployeeClick}
-              className="w-full h-full text-[#ff8d4f] font-semibold flex flex-col items-center justify-center gap-2 cursor-pointer"
+              className="w-full h-full text-[#ff8d4f] font-semibold flex flex-col items-center justify-center  cursor-pointer"
             >
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                 <Plus className="w-8 h-8 text-gray-600" />
@@ -46,7 +47,7 @@ export default function AddEmployee({ onTabChange }: Props) {
             <TabsTrigger
               value="Team"
               onClick={handleEmployeesClick}
-              className="w-full text-[#ff8d4f] font-semibold flex items-center justify-center gap-3 p-3 cursor-pointer
+              className="w-full text-[#ff8d4f] font-semibold flex items-center justify-center p-2 cursor-pointer
                          data-[state=active]:text-[#ff8d4f] data-[state=active]:bg-white rounded-[5px]"
             >
               <User className="text-orange-500 flex-shrink-0 w-5 h-5" />

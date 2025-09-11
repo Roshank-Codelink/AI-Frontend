@@ -37,7 +37,7 @@ export default function AppSidebar({ className }: { className: string }) {
       {/* Desktop Vertical Sidebar */}
       <div className={`hidden md:flex h-screen w-20 bg-white border-r flex-col items-center py-6 ${className}`}>
         {/* Logo */}
-        <div className="w-12 h-12 rounded-[5px] bg-gradient-to-br from-orange-500 to-orange-300 flex items-center justify-center shadow mb-10">
+        <div className="w-12 h-12 rounded-[5px] cursor-pointer bg-gradient-to-br from-primary-500 to-custom-orange flex items-center justify-center shadow mb-10">
           <span className="text-white font-bold text-xl">Yp</span>
         </div>
 
@@ -52,7 +52,7 @@ export default function AppSidebar({ className }: { className: string }) {
                     <Link
                       href={url}
                       className={`relative flex items-center justify-center w-14 h-14 rounded-[5px] transition-all
-                        ${active ? "bg-orange-100 text-orange-600 shadow" : "text-gray-500 hover:bg-gray-100"}`}
+                        ${active ? "bg-left-sidebar-bg text-left-sidebar-texts-active shadow" : "text-gray-500 hover:bg-gray-100"}`}
                     >
                       <Icon size={26} />
                       {active && <span className="absolute -right-3 w-1.5 h-10 bg-orange-500 rounded-[5px]" />}
@@ -61,7 +61,7 @@ export default function AppSidebar({ className }: { className: string }) {
 
                   <TooltipContent
                     side="right"
-                    className="relative bg-orange-500 text-white text-sm font-medium px-3 py-1.5 rounded-[5px] shadow-md"
+                    className="relative bg-left-sidebar-500 text-white text-sm font-medium px-3 py-1.5 rounded-[5px] shadow-md"
                   >
                     {title}
                   </TooltipContent>
@@ -80,7 +80,7 @@ export default function AppSidebar({ className }: { className: string }) {
               </TooltipTrigger>
               <TooltipContent
                 side="right"
-                className="relative bg-orange-500 text-white text-sm font-medium px-3 py-1.5 rounded-[5px] shadow-md"
+                className="relative bg-left-sidebar-500 text-white text-sm font-medium px-3 py-1.5 rounded-[5px] shadow-md"
               >
                 Account
               </TooltipContent>
@@ -98,7 +98,7 @@ export default function AppSidebar({ className }: { className: string }) {
               key={title}
               href={url}
               className={`flex flex-col items-center text-xs transition-all ${
-                active ? "text-orange-600" : "text-gray-500"
+                active ? "text-left-sidebar-texts-active" : "text-gray-500"
               }`}
             >
               <Icon size={22} />

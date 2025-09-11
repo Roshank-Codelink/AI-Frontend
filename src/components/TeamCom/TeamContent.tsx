@@ -176,9 +176,9 @@ export default function EmployeeContent({ onTabChange }: Props) {
             {/* Employee Cards - Keep Current Position */}
             <div className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-[95%]' : 'w-[70%]'}`}>
                 <div className="w-full mb-4 sm:mb-5 md:mb-6">
-                    <div className="w-full sm:w-[60%] md:w-[65%] lg:w-[60%] xl:w-[48%] flex flex-col sm:flex-row gap-2 sm:gap-3">
-                        <div className="bg-white w-full sm:w-[48%] h-[65px] p-3 sm:p-4 flex items-center gap-3 rounded-[5px] border border-text-gray-100">
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-[5px] flex items-center justify-center flex-shrink-0">
+                    <div className="w-full sm:w-[60%] md:w-[65%] lg:w-[60%] xl:w-[48%]  flex flex-col sm:flex-row gap-2 sm:gap-3">
+                        <div className="bg-white w-full sm:w-[48%] h-[65px] p-3 flex items-center gap-3 rounded-[5px] border border-text-gray-100">
+                            <div className="w-10 h-10 sm:w-10 sm:h-10 bg-orange-100 rounded-[5px] flex items-center justify-center flex-shrink-0">
                                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
                             </div>
                             <div className="flex flex-col justify-center min-w-0 flex-1">
@@ -186,8 +186,8 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                 <p className="text-[14px] sm:text-[14px] text-text-gray-800 font-bold leading-tight">100</p>
                             </div>
                         </div>
-                        <div className="bg-white w-full sm:w-[49%] h-[65px] p-3 sm:p-4 flex items-center gap-3 rounded-[5px] border border-text-gray-100">
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-[5px] flex items-center justify-center flex-shrink-0">
+                        <div className="bg-white w-full sm:w-[49%] h-[65px] p-3 flex items-center gap-3 rounded-[5px] border border-text-gray-100">
+                            <div className="w-10 h-10 sm:w-10 sm:h-10 bg-green-100 rounded-[5px] flex items-center justify-center flex-shrink-0">
                                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
                             </div>
                             <div className="flex flex-col justify-center min-w-0 flex-1">
@@ -211,7 +211,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                             />
                         </div>
                         <div className="flex gap-2">
-                            <Select defaultValue="all">
+                            <Select defaultValue="all" >
                                 <SelectTrigger className="w-48 h-10 text-sm rounded-[5px] ">
                                     <SelectValue placeholder="Filter by Status & Role" />
                                 </SelectTrigger>
@@ -254,8 +254,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                     <TableRow className="bg-gray-50">
                                         <TableHead className="w-[80px] sm:w-[100px] text-center lg:bg-gray-50 lg:border-b lg:border-gray-200">
                                             <div className="flex items-center justify-center gap-1">
-                                                <input type="checkbox" className="w-4 h-4 rounded-[5px] border-gray-300 text-orange-500 focus:ring-orange-500" />
-                                                <span className="text-sm font-medium text-gray-600">ID</span>
+                                                            <span className="text-sm font-medium text-gray-600">ID</span>
                                             </div>
                                         </TableHead>
                                         <TableHead className="w-[200px] sm:w-[250px] lg:w-[300px] lg:bg-gray-50 lg:border-b lg:border-gray-200">
@@ -290,8 +289,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                         <TableRow key={employee.id} className="hover:bg-gray-50 transition-colors border-b border-gray-100">
                                             <TableCell className="w-[80px] sm:w-[100px] text-center text-gray-800 text-sm">
                                                 <div className="flex items-center justify-center gap-2">
-                                                    <input type="checkbox" className="w-4 h-4 rounded-[5px] border-gray-300 text-orange-500 focus:ring-orange-500" />
-                                                    <span className="font-medium">{employee.id}</span>
+                                                       <span className="font-medium">{employee.id}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell className="w-[200px] sm:w-[250px] lg:w-[300px]">
@@ -366,10 +364,10 @@ export default function EmployeeContent({ onTabChange }: Props) {
                     <div className="flex items-center gap-2 order-2 sm:order-1">
                         <span className="text-xs sm:text-sm text-gray-700 font-medium whitespace-nowrap">Show</span>
                         <Select defaultValue="15">
-                            <SelectTrigger className="w-16 sm:w-18 md:w-20 h-7 sm:h-8 md:h-9 text-xs sm:text-sm bg-white border-orange-200 hover:border-orange-300 focus:border-orange-500 focus:ring-orange-500/20">
+                            <SelectTrigger className="w-16 sm:w-18 md:w-20 h-7 sm:h-8 md:h-9 text-xs sm:text-sm bg-white  rounded-[5px]">
                                 <SelectValue />
                             </SelectTrigger>
-                            <SelectContent className="bg-white border-orange-200">
+                            <SelectContent className="bg-white  rounded-[5px]">
                                 <SelectItem value="15" className="hover:bg-orange-50 focus:bg-orange-50 text-xs sm:text-sm">15</SelectItem>
                                 <SelectItem value="25" className="hover:bg-orange-50 focus:bg-orange-50 text-xs sm:text-sm">25</SelectItem>
                                 <SelectItem value="35" className="hover:bg-orange-50 focus:bg-orange-50 text-xs sm:text-sm">35</SelectItem>
@@ -382,7 +380,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                     {/* Shadcn Pagination */}
                     <div className="order-1 sm:order-2">
                         <Pagination className="w-auto">
-                            <PaginationContent className="gap-0.5 sm:gap-1">
+                            <PaginationContent className="gap-0.5 sm:gap-1 rounded-[5px]">
                                 <PaginationItem>
                                     <PaginationPrevious href="#" className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-auto md:px-2.5 p-0 text-xs sm:text-sm bg-white border-gray-300 text-gray-600 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600 transition-colors" />
                                 </PaginationItem>

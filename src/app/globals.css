@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Your existing CSS variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -41,6 +42,59 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Add your custom colors here for Tailwind v4 */
+  --color-primary-50: #fff7ed;
+  --color-primary-100: #ffedd5;
+  --color-primary-200: #fed7aa;
+  --color-primary-300: #fdba74;
+  --color-primary-400: #fb923c;
+  --color-primary-500: #ff6900;
+  --color-primary-600: #ea580c;
+  --color-primary-700: #c2410c;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+   --color-custom-orange: #ffedd5;
+
+
+
+  --color-blue-50: #eff6ff;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+
+  --color-green-100: #dcfce7;
+  --color-green-500: #22c55e;
+  --color-green-800: #166534;
+
+  --color-yellow-500: #f59e0b;
+
+  --color-red-50: #fef2f2;
+  --color-red-500: #ef4444;
+
+  /* Custom colors */
+  --color-custom-orange: #ff8d4f;
+  --color-custom-light-gray: #DDDDDD;
+  --color-custom-light-bg: #f8f9fa;
+  --color-custom-light-border: #ddd;
+  --color-custom-semi-transparent: #e4e4ed4f;
+  --color-custom-black: #000;
+
+
+  --color-left-sidebar-bg: oklch(0.954 0.038 75.164) ;
+  --color-left-sidebar-texts-active: oklch(0.646 0.222 41.116);
+  --color-left-sidebar-500: oklch(0.705 0.213 47.604);
+
+
 }
 
 :root {

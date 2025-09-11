@@ -15,19 +15,19 @@ export default function Header() {
   const subSection = pathParts[1];
 
   return (
-    <header className="w-full h-16 bg-[#f8f9fa] border-b border-[#ddd]/40 px-2 sm:px-3 md:px-4 lg:px-6 flex items-center justify-between sticky top-0 z-50">
+    <header className="w-full h-16 bg-custom-light-bg border-b border-custom-light-border/40 px-2 sm:px-3 md:px-4 lg:px-6 flex items-center justify-between sticky top-0 z-50">
       {/* Title - Dynamic navigation */}
       <div className="flex-1 min-w-0 mr-2">
-        <h1 className="text-orange-500 text-sm sm:text-base md:text-lg lg:text-xl font-bold truncate">
+        <h1 className="text-primary-500 text-sm sm:text-base md:text-lg lg:text-xl font-bold truncate">
           {/* Main section - clickable to go to main page */}
-          <Link href={`/${mainSection}`} className="cursor-pointer capitalize hover:text-orange-600 transition-colors">
+          <Link href={`/${mainSection}`} className="cursor-pointer capitalize hover:text-primary-600 transition-colors">
             {mainSection}
             
           </Link>
           
        
           {subSection && (
-            <span className="text-black text-[12px] font-normal ml-2">
+            <span className="text-custom-black text-[12px] font-normal ml-2">
               <Link href={pathname} className="cursor-pointer capitalize hover:text-gray-700 transition-colors">
                 / {subSection}
               </Link>

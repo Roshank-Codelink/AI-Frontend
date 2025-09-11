@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+
 import AppSidebar from "@/components/layout/LeftSidebar";
 import Header from "@/components/layout/Header";
 
@@ -36,12 +37,12 @@ export default function RootLayout({
           <AppSidebar className="hidden md:flex" />
 
           {/* Main Content Area - Phone Padding Fixed */}
-          <div className="flex flex-col flex-1 bg-gray-50 min-w-0 overflow-hidden pb-[50px] lg:pb-0 md:pb-0">
+          <div className="flex flex-col flex-1 min-w-0 overflow-hidden pb-[50px] lg:pb-0 md:pb-0">
             {/* Dynamic Header - Fixed */}
             <Header />
 
             {/* Page Content - Phone Padding */}
-            <main className="flex-1 overflow-y-auto">
+            <main className="flex-1 overflow-y-auto bg-gray-50 ">
               {children}
             </main>
           </div>

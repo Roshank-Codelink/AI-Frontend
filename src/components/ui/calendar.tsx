@@ -1,4 +1,3 @@
-"use client"
 
 import * as React from "react"
 import {
@@ -22,19 +21,39 @@ function Calendar({
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"]
+  captionLayout?: "label" | "dropdown" | "dropdown-months" | "dropdown-years" | "dropdown-buttons"
 }) {
   const defaultClassNames = getDefaultClassNames()
+  
+  // Map dropdown-buttons to dropdown with custom styling
+  const effectiveCaptionLayout = (captionLayout as string) === "dropdown-buttons" ? "dropdown" : captionLayout
 
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
+      defaultMonth={(props as any).selected || new Date()}
+      disabled={(date) => {
+        const today = new Date()
+        const currentMonth = today.getMonth()
+        const currentYear = today.getFullYear()
+        const currentDate = today.getDate()
+        const dateMonth = date.getMonth()
+        const dateYear = date.getFullYear()
+        const dateDay = date.getDate()
+        
+        // Disable future dates and current date (only allow past dates)
+        return dateYear > currentYear || 
+               (dateYear === currentYear && dateMonth > currentMonth) ||
+               (dateYear === currentYear && dateMonth === currentMonth && dateDay >= currentDate)
+      }}
+      toMonth={new Date(new Date().getFullYear(), new Date().getMonth(), 31)}
       className={cn(
-        "bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent [&_button[data-selected=true]]:!bg-orange-500 [&_button[data-selected=true]]:!text-white [&_button[aria-selected=true]]:!bg-orange-500 [&_button[aria-selected=true]]:!text-white [&_button[data-selected]]:!bg-orange-500 [&_button[data-selected]]:!text-white",
+        "bg-background group/calendar p-1 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent [&_button[data-selected=true]]:!bg-orange-500 [&_button[data-selected=true]]:!text-white [&_button[aria-selected=true]]:!bg-orange-500 [&_button[aria-selected=true]]:!text-white [&_button[data-selected]]:!bg-orange-500 [&_button[data-selected]]:!text-white [&_button[data-selected=true]]:hover:!bg-orange-600 [&_button[data-selected=true]]:focus:!bg-orange-500",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
       )}
-      captionLayout={captionLayout}
+      captionLayout={effectiveCaptionLayout as any}
       formatters={{
         formatMonthDropdown: (date) =>
           date.toLocaleString("default", { month: "short" }),
@@ -46,7 +65,7 @@ function Calendar({
           "flex gap-4 flex-col md:flex-row relative",
           defaultClassNames.months
         ),
-        month: cn("flex flex-col w-full gap-4", defaultClassNames.month),
+        month: cn("flex flex-col w-full gap-2", defaultClassNames.month),
         nav: cn(
           "flex items-center gap-1 w-full absolute top-0 inset-x-0 justify-between",
           defaultClassNames.nav
@@ -66,22 +85,22 @@ function Calendar({
           defaultClassNames.month_caption
         ),
         dropdowns: cn(
-          "w-full flex items-center text-sm font-medium justify-center h-(--cell-size) gap-1.5",
+          "w-full flex items-center text-sm font-medium justify-center h-(--cell-size) gap-1.5 ",
           defaultClassNames.dropdowns
         ),
         dropdown_root: cn(
-          "relative has-focus:border-ring border border-input shadow-xs  rounded-md",
-          defaultClassNames.dropdown_root
-        ),
+          "relative border border-input rounded-[5px]  ",
+          defaultClassNames.dropdown_root   
+        ),  
         dropdown: cn(
-          "absolute bg-popover inset-0 opacity-0",
+          "absolute bg-popover inset-0 opacity-0 w-[60px] text-[12px] ", 
           defaultClassNames.dropdown
         ),
         caption_label: cn(
           "select-none font-medium",
           captionLayout === "label"
             ? "text-sm"
-            : "rounded-md pl-2 pr-1 flex items-center gap-1 text-sm h-8 [&>svg]:text-muted-foreground [&>svg]:size-3.5",
+            : "rounded-md pl-2 pr-1 flex items-center gap-1 text-sm h-8 [&>svg]:text-muted-foreground [&>svg]:size-3.5 hover:bg-accent hover:text-accent-foreground cursor-pointer transition-colors",
           defaultClassNames.caption_label
         ),
         table: "w-full border-collapse",
@@ -90,7 +109,7 @@ function Calendar({
           "text-muted-foreground rounded-md flex-1 font-normal text-[0.8rem] select-none",
           defaultClassNames.weekday
         ),
-        week: cn("flex w-full mt-2", defaultClassNames.week),
+        week: cn("flex w-full mt-1", defaultClassNames.week),
         week_number_header: cn(
           "select-none w-(--cell-size)",
           defaultClassNames.week_number_header
@@ -201,7 +220,7 @@ function CalendarDayButton({
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
       className={cn(
-        "data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70",
+        "data-[selected-single=true]:!bg-orange-500 data-[selected-single=true]:!text-white data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:!bg-orange-500 data-[range-start=true]:!text-white data-[range-end=true]:!bg-orange-500 data-[range-end=true]:!text-white group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70",
         defaultClassNames.day,
         className
       )}
