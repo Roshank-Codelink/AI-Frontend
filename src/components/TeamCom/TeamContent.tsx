@@ -258,7 +258,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                             </div>
                                         </TableHead>
                                         <TableHead className="w-[200px] sm:w-[250px] lg:w-[300px] lg:bg-gray-50 lg:border-b lg:border-gray-200">
-                                            <div className="flex items-center gap-1">
+                                            <div className="flex items-center gap-2">
                                                 <span className="text-sm font-medium text-gray-600">Name</span>
                                             </div>
                                         </TableHead>
