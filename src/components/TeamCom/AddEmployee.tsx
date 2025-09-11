@@ -4,11 +4,7 @@ import { Plus, User } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
 
-type Props = {
-  onTabChange?: (value: string) => void;
-};
-
-export default function AddEmployee({ onTabChange }: Props) {
+export default function AddEmployee() {
   const router = useRouter();
 
   const handleNewEmployeeClick = () => {

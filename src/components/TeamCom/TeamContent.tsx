@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Users,  Edit, Trash2, Plus, MessageCircle, X } from "lucide-react";
+import { Search, Users, Edit, Trash2, Plus, MessageCircle} from "lucide-react";
 
 import { useState } from "react";
 
@@ -31,11 +31,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation";
 import AiChatbox from "@/components/common/AiChatbox";
-type Props = {
-    onTabChange?: (value: string) => void;
-};
-
-export default function EmployeeContent({ onTabChange }: Props) {
+export default function EmployeeContent() {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
     const toggleSidebar = () => {
@@ -305,7 +301,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                                                                 target.nextElementSibling?.classList.remove('hidden');
                                                             }}
                                                         />
-                                                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm hidden">
+                                                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full items-center justify-center text-white font-semibold text-xs sm:text-sm hidden">
                                                             {employee.avatar}
                                                         </div>
                                                     </div>

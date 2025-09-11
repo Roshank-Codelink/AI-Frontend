@@ -31,7 +31,7 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      defaultMonth={(props as any).selected || new Date()}
+      defaultMonth={new Date()}
       disabled={(date) => {
         const today = new Date()
         const currentMonth = today.getMonth()
@@ -53,7 +53,7 @@ function Calendar({
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
       )}
-      captionLayout={effectiveCaptionLayout as any}
+      captionLayout={effectiveCaptionLayout as "label" | "dropdown" | "dropdown-months" | "dropdown-years"}
       formatters={{
         formatMonthDropdown: (date) =>
           date.toLocaleString("default", { month: "short" }),
