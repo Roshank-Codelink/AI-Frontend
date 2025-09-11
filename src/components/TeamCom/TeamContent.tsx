@@ -31,7 +31,11 @@ import {
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation";
 import AiChatbox from "@/components/common/AiChatbox";
-export default function EmployeeContent() {
+type Props = {
+  onTabChange?: (value: string) => void;
+};
+
+export default function EmployeeContent({ onTabChange }: Props) {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
     const toggleSidebar = () => {
