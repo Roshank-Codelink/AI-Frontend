@@ -1,28 +1,28 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { User, Mail, Phone, Calendar as CalendarIcon, Upload, ChevronDown } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
-
-
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 export default function AddEmployeeForm() {
-    const [dateOfBirth, setDateOfBirth] = useState<Date | undefined>(undefined);
-    const [joinDate, setJoinDate] = useState<Date | undefined>(undefined);
-    const [dateOfBirthOpen, setDateOfBirthOpen] = useState(false);
-    const [joinDateOpen, setJoinDateOpen] = useState(false);
-
+    const [dateOfBirth, setDateOfBirth] = useState<string>("");
+    const [joinDate, setJoinDate] = useState<string>("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [selectedCountry, setSelectedCountry] = useState({
         code: "+91",
         countryCode: "IN",
         name: "India"
     });
+
+    // Refs for Flatpickr instances
+    const dateOfBirthRef = useRef<HTMLInputElement>(null);
+    const joinDateRef = useRef<HTMLInputElement>(null);
+    const dateOfBirthPickerRef = useRef<flatpickr.Instance | null>(null);
+    const joinDatePickerRef = useRef<flatpickr.Instance | null>(null);
 
     const countries = [
         { code: "+91", countryCode: "IN", name: "India" },
@@ -57,6 +57,60 @@ export default function AddEmployeeForm() {
         { code: "+351", countryCode: "PT", name: "Portugal" }
     ];
 
+    // Initialize Flatpickr for Date of Birth
+    useEffect(() => {
+        if (dateOfBirthRef.current && !dateOfBirthPickerRef.current) {
+            dateOfBirthPickerRef.current = flatpickr(dateOfBirthRef.current, {
+                dateFormat: "M d, Y",
+                maxDate: "today",
+                onChange: function(selectedDates, dateStr) {
+                    setDateOfBirth(dateStr);
+                },
+                onReady: function(selectedDates, dateStr, instance) {
+                    // Custom styling for the calendar
+                    const calendar = instance.calendarContainer;
+                    if (calendar) {
+                        calendar.classList.add("custom-flatpickr");
+                    }
+                }
+            });
+        }
+
+        return () => {
+            if (dateOfBirthPickerRef.current) {
+                dateOfBirthPickerRef.current.destroy();
+                dateOfBirthPickerRef.current = null;
+            }
+        };
+    }, []);
+
+    // Initialize Flatpickr for Join Date
+    useEffect(() => {
+        if (joinDateRef.current && !joinDatePickerRef.current) {
+            joinDatePickerRef.current = flatpickr(joinDateRef.current, {
+                dateFormat: "M d, Y",
+                maxDate: "today",
+                onChange: function(selectedDates, dateStr) {
+                    setJoinDate(dateStr);
+                },
+                onReady: function(selectedDates, dateStr, instance) {
+                    // Custom styling for the calendar
+                    const calendar = instance.calendarContainer;
+                    if (calendar) {
+                        calendar.classList.add("custom-flatpickr");
+                    }
+                }
+            });
+        }
+
+        return () => {
+            if (joinDatePickerRef.current) {
+                joinDatePickerRef.current.destroy();
+                joinDatePickerRef.current = null;
+            }
+        };
+    }, []);
+
     return (
         <div className="p-3 sm:p-6">
             <div className="w-full max-w-2xl mx-auto lg:w-1/2 lg:mx-0">
@@ -83,7 +137,7 @@ export default function AddEmployeeForm() {
                                 </label>
                                 <input
                                     type="text"
-                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px]   outline-none "
+                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px] outline-none"
                                     placeholder="Full Name"
                                 />
                             </div>
@@ -96,7 +150,7 @@ export default function AddEmployeeForm() {
                                 </label>
                                 <input
                                     type="email"
-                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px]   outline-none "
+                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px] outline-none"
                                     placeholder="Email Address"
                                 />
                             </div>
@@ -108,14 +162,14 @@ export default function AddEmployeeForm() {
                                 <Phone className="w-4 h-4 text-orange-500" />
                                 Phone Number *
                             </label>
-                            <div className="flex border border-gray-300 rounded-[5px] overflow-hidden  transition-all">
+                            <div className="flex border border-gray-300 rounded-[5px] overflow-hidden transition-all">
                                 {/* Country Code Selector */}
                                 <div className="relative">
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <Button
                                                 variant="outline"
-                                                className="h-11 px-3 border-0 bg-gray-50  rounded-none border-r border-gray-300"
+                                                className="h-11 px-3 border-0 bg-gray-50 rounded-none border-r border-gray-300"
                                             >
                                                 <div className="flex items-center gap-2">
                                                     <ReactCountryFlag
@@ -166,14 +220,13 @@ export default function AddEmployeeForm() {
                                     type="tel"
                                     value={phoneNumber}
                                     onChange={(e) => setPhoneNumber(e.target.value)}
-                                    className="flex-1 h-11 px-4 text-[15px]  outline-none "
+                                    className="flex-1 h-11 px-4 text-[15px] outline-none"
                                     placeholder="Phone Number"
                                 />
                             </div>
                         </div>
 
                         {/* Date of Birth and Join Date - Horizontal */}
-
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             {/* Date of Birth */}
                             <div className="space-y-2">
@@ -181,26 +234,15 @@ export default function AddEmployeeForm() {
                                     <CalendarIcon className="w-4 h-4 text-orange-500" />
                                     Date of Birth *
                                 </label>
-                                <Popover open={dateOfBirthOpen} onOpenChange={setDateOfBirthOpen}>
-                                    <PopoverTrigger asChild>
-                                        <Button variant="outline" className="w-full text-[15px] bg-gray-50 justify-start rounded-[5px] text-gray-500 text-left font-normal px-3 py-2.5 h-auto border-gray-300 hover:bg-gray-50 hover:text-gray-500">
-                                            {dateOfBirth ? format(dateOfBirth, "PPP") : "Select date of birth"}
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0" align="start">
-                                        <Calendar 
-                                            mode="single" 
-                                            selected={dateOfBirth} 
-                                            onSelect={(date) => { 
-                                                setDateOfBirth(date); 
-                                                setDateOfBirthOpen(false); 
-                                            }} 
-                                            initialFocus 
-                                            captionLayout="dropdown" 
-                                            showOutsideDays={false} 
-                                        />
-                                    </PopoverContent>
-                                </Popover>
+                                <input
+                                    ref={dateOfBirthRef}
+                                    type="text"
+                                    value={dateOfBirth}
+                                    onChange={(e) => setDateOfBirth(e.target.value)}
+                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px] outline-none bg-gray-50 text-gray-500 text-[15px] cursor-pointer"
+                                    placeholder="Select date of birth"
+                                    readOnly
+                                />
                             </div>
 
                             {/* Join Date */}
@@ -209,102 +251,92 @@ export default function AddEmployeeForm() {
                                     <CalendarIcon className="w-4 h-4 text-orange-500" />
                                     Join Date *
                                 </label>
-                                <Popover open={joinDateOpen} onOpenChange={setJoinDateOpen}>
-                                    <PopoverTrigger asChild>
-                                        <Button variant="outline" className="w-full bg-gray-50 text justify-start text-[15px] rounded-[5px] text-gray-500 text-left font-normal px-3 py-2.5 h-auto border-gray-300 hover:bg-gray-50 hover:text-gray-500">
-                                            {joinDate ? format(joinDate, "PPP") : "Select join date"}
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0" align="start">
-                                        <Calendar 
-                                            mode="single" 
-                                            selected={joinDate} 
-                                            onSelect={(date) => {
-                                                setJoinDate(date); 
-                                                setJoinDateOpen(false);
-                                            }} 
-                                            initialFocus 
-                                            captionLayout="dropdown" 
-                                            showOutsideDays={false} 
-                                        />
-                                    </PopoverContent>
-                                </Popover>
+                                <input
+                                    ref={joinDateRef}
+                                    type="text"
+                                    value={joinDate}
+                                    onChange={(e) => setJoinDate(e.target.value)}
+                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px] outline-none bg-gray-50 text-gray-500 text-[15px] cursor-pointer"
+                                    placeholder="Select join date"
+                                    readOnly
+                                />
                             </div>
                         </div>
-                            {/* Profile Image Upload */ }
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                                    <Upload className="w-4 h-4 text-orange-500" />
-                                    Profile Picture *
+
+                        {/* Profile Image Upload */}
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                                <Upload className="w-4 h-4 text-orange-500" />
+                                Profile Picture *
+                            </label>
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                <div className="w-16 h-16 bg-gray-100 rounded-[5px] flex items-center justify-center border-2 border-dashed border-gray-300 flex-shrink-0">
+                                    <User className="w-8 h-8 text-gray-400" />
+                                </div>
+                                <div className="flex-1 w-full">
+                                    <input
+                                        type="file"
+                                        id="profile-picture"
+                                        accept="image/*"
+                                        className="hidden"
+                                    />
+                                    <label
+                                        htmlFor="profile-picture"
+                                        className="inline-flex items-center px-4 py-2 rounded-[5px] bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium cursor-pointer transition-colors"
+                                    >
+                                        <Upload className="w-4 h-4 mr-2" />
+                                        Upload Picture
+                                    </label>
+                                    <p className="text-xs text-gray-500 mt-1">JPG, PNG or GIF. Max size 2MB.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Status */}
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-700">Status</label>
+                            <div className="flex gap-4">
+                                <label className="flex items-center gap-2">
+                                    <input
+                                        type="radio"
+                                        name="status"
+                                        value="Active"
+                                        defaultChecked
+                                        className="cursor-pointer accent-orange-600"
+                                    />
+                                    <span className="text-sm text-gray-700">Active</span>
                                 </label>
-                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                                    <div className="w-16 h-16 bg-gray-100 rounded-[5px] flex items-center justify-center border-2 border-dashed border-gray-300 flex-shrink-0">
-                                        <User className="w-8 h-8 text-gray-400" />
-                                    </div>
-                                    <div className="flex-1 w-full">
-                                        <input
-                                            type="file"
-                                            id="profile-picture"
-                                            accept="image/*"
-                                            className="hidden"
-                                        />
-                                        <label
-                                            htmlFor="profile-picture"
-                                            className="inline-flex items-center px-4 py-2 rounded-[5px] bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded-[5px] cursor-pointer transition-colors"
-                                        >
-                                            <Upload className="w-4 h-4 mr-2" />
-                                            Upload Picture
-                                        </label>
-                                        <p className="text-xs text-gray-500 mt-1">JPG, PNG or GIF. Max size 2MB.</p>
-                                    </div>
-                                </div>
+                                <label className="flex items-center gap-2">
+                                    <input
+                                        type="radio"
+                                        name="status"
+                                        value="Inactive"
+                                        className="cursor-pointer accent-orange-600"
+                                    />
+                                    <span className="text-sm text-gray-700">Inactive</span>
+                                </label>
                             </div>
+                        </div>
 
-                            {/* Status */ }
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700">Status</label>
-                                <div className="flex gap-4">
-                                    <label className="flex items-center gap-2">
-                                        <input
-                                            type="radio"
-                                            name="status"
-                                            value="Active"
-                                            defaultChecked
-                                            className="cursor-pointer accent-orange-600 "
-                                        />
-                                        <span className="text-sm text-gray-700">Active</span>
-                                    </label>
-                                    <label className="flex items-center gap-2">
-                                        <input
-                                            type="radio"
-                                            name="status"
-                                            value="Inactive"
-                                            className="cursor-pointer accent-orange-600"
-                                        />
-                                        <span className="text-sm text-gray-700">Inactive</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            {/* Action Buttons */ }
-                            <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-gray-200">
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    className="w-full sm:w-auto px-6 py-2.5 rounded-[5px] cursor-pointer"
-                                >
-                                    Cancel
-                                </Button>
-                                <Button
-                                    type="submit"
-                                    className="w-full sm:w-auto cursor-pointer px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-[5px]"
-                                >
-                                    Add Employee
-                                </Button>
-                            </div>
+                        {/* Action Buttons */}
+                        <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-gray-200">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                className="w-full sm:w-auto px-6 py-2.5 rounded-[5px] cursor-pointer"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                type="submit"
+                                className="w-full sm:w-auto cursor-pointer px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-[5px]"
+                            >
+                                Add Employee
+                            </Button>
+                        </div>
                     </form>
-                        </div>
-                        </div>
                 </div>
-                );
+            </div>
+        </div>
+    );
 }

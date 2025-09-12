@@ -5,7 +5,7 @@ import AddEmployeeForm from "@/components/TeamCom/AddEmployeeForm";
 import { useState } from "react";
 
 export default function NewEmployee() {
-    const [activeTab, setActiveTab] = useState("NewEmployee");
+    const [activeTab, setActiveTab] = useState("Manage");
   
 
     return (
@@ -17,7 +17,7 @@ export default function NewEmployee() {
             
             {/* Content Area */}
             <div className="flex-1 h-full overflow-y-auto">
-                {activeTab == "NewEmployee" && (
+                {activeTab == "Manage" && (
                     <AddEmployeeForm />
                 )}
             </div>

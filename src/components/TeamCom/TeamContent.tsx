@@ -364,7 +364,7 @@ export default function EmployeeContent({ onTabChange }: Props) {
                     <div className="flex items-center gap-2 order-2 sm:order-1">
                         <span className="text-xs sm:text-sm text-gray-700 font-medium whitespace-nowrap">Show</span>
                         <Select defaultValue="15">
-                            <SelectTrigger className="w-16 sm:w-18 md:w-20 h-7 sm:h-8 md:h-9 text-xs sm:text-sm bg-white  rounded-[5px]">
+                            <SelectTrigger className="w-16 sm:w-18 md:w-20 h-7 sm:h-8 md:h-9 text-xs sm:text-sm bg-white  rounded-[5px] shadow-none">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent className="bg-white  rounded-[5px]">

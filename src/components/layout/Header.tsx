@@ -7,7 +7,7 @@ import AccountDropdown from "./Useraccount"
 
 export default function Header() {
   const pathname = usePathname();
-  console.log("pathname", pathname);
+  console.log(pathname);
   
   // Split the path to separate main section and sub-section
   const pathParts = pathname.split("/").filter(part => part !== "");

@@ -9,7 +9,8 @@ type Props = {
 };
 
 export default function AddEmployee({ onTabChange }: Props) {
-  const router = useRouter();
+  
+    const router = useRouter();
 
   const handleNewEmployeeClick = () => {
     onTabChange?.("Manage");
@@ -31,7 +32,7 @@ export default function AddEmployee({ onTabChange }: Props) {
         <Tabs className="w-full h-full">
           <TabsList className="grid w-full h-full grid-cols-1 bg-transparent">
             <TabsTrigger
-              value="manage"
+              value="Manage"
               
               onClick={handleNewEmployeeClick}
               className="w-full h-full text-[#ff8d4f] font-semibold flex flex-col items-center justify-center  cursor-pointer"

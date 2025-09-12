@@ -18,9 +18,7 @@ export default function EmployeePage() {
             {/* Content Area */}
             <div className="flex-1 h-full overflow-y-auto">
                 {activeTab == "Team" && <TeamContent onTabChange={setActiveTab} />}
-                {activeTab == "Manage" && (
-                    <AddEmployeeForm />
-                )}
+              
             </div>
         </div>
     );
