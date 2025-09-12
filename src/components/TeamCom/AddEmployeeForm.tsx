@@ -5,8 +5,7 @@ import { User, Mail, Phone, Calendar as CalendarIcon, Upload, ChevronDown } from
 import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+import { DatePicker, Space } from "antd";
 
 export default function AddEmployeeForm() {
     const [dateOfBirth, setDateOfBirth] = useState<string>("");
@@ -21,8 +20,7 @@ export default function AddEmployeeForm() {
     // Refs for Flatpickr instances
     const dateOfBirthRef = useRef<HTMLInputElement>(null);
     const joinDateRef = useRef<HTMLInputElement>(null);
-    const dateOfBirthPickerRef = useRef<flatpickr.Instance | null>(null);
-    const joinDatePickerRef = useRef<flatpickr.Instance | null>(null);
+
 
     const countries = [
         { code: "+91", countryCode: "IN", name: "India" },
@@ -58,58 +56,11 @@ export default function AddEmployeeForm() {
     ];
 
     // Initialize Flatpickr for Date of Birth
-    useEffect(() => {
-        if (dateOfBirthRef.current && !dateOfBirthPickerRef.current) {
-            dateOfBirthPickerRef.current = flatpickr(dateOfBirthRef.current, {
-                dateFormat: "M d, Y",
-                maxDate: "today",
-                onChange: function(selectedDates, dateStr) {
-                    setDateOfBirth(dateStr);
-                },
-                onReady: function(selectedDates, dateStr, instance) {
-                    // Custom styling for the calendar
-                    const calendar = instance.calendarContainer;
-                    if (calendar) {
-                        calendar.classList.add("custom-flatpickr");
-                    }
-                }
-            });
-        }
 
-        return () => {
-            if (dateOfBirthPickerRef.current) {
-                dateOfBirthPickerRef.current.destroy();
-                dateOfBirthPickerRef.current = null;
-            }
-        };
-    }, []);
 
-    // Initialize Flatpickr for Join Date
-    useEffect(() => {
-        if (joinDateRef.current && !joinDatePickerRef.current) {
-            joinDatePickerRef.current = flatpickr(joinDateRef.current, {
-                dateFormat: "M d, Y",
-                maxDate: "today",
-                onChange: function(selectedDates, dateStr) {
-                    setJoinDate(dateStr);
-                },
-                onReady: function(selectedDates, dateStr, instance) {
-                    // Custom styling for the calendar
-                    const calendar = instance.calendarContainer;
-                    if (calendar) {
-                        calendar.classList.add("custom-flatpickr");
-                    }
-                }
-            });
-        }
 
-        return () => {
-            if (joinDatePickerRef.current) {
-                joinDatePickerRef.current.destroy();
-                joinDatePickerRef.current = null;
-            }
-        };
-    }, []);
+
+
 
     return (
         <div className="p-3 sm:p-6">
@@ -234,15 +185,38 @@ export default function AddEmployeeForm() {
                                     <CalendarIcon className="w-4 h-4 text-orange-500" />
                                     Date of Birth *
                                 </label>
-                                <input
-                                    ref={dateOfBirthRef}
-                                    type="text"
-                                    value={dateOfBirth}
-                                    onChange={(e) => setDateOfBirth(e.target.value)}
-                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px] outline-none bg-gray-50 text-gray-500 text-[15px] cursor-pointer"
-                                    placeholder="Select date of birth"
-                                    readOnly
-                                />
+                                <div className="w-full h-10">
+                                <Space direction="vertical" className="w-full  rounded-[5px]" size={5}>
+                                    <DatePicker 
+                                        className="w-full h-10"
+                                        placeholder="Select date of birth"
+                                        style={{
+                                            width: '100%',
+                                            height: '40px',
+                                            border: '1px solid #d1d5db',
+                                            backgroundColor: '#f9fafb',
+                                            boxShadow: 'none',
+                                            borderRadius: '5px',
+                                            fontSize: '13px'
+                                        }}
+                                        suffixIcon={null}
+                                        allowClear={false}
+                                        disabledDate={(current) => {
+                                            // Disable future dates - only allow today and previous dates
+                                            return current && current.isAfter(new Date(), 'day');
+                                        }}
+                                        onFocus={(e) => {
+                                            e.target.style.borderColor = '#d1d5db';
+                                            e.target.style.boxShadow = 'none';
+                                        }}
+                                        onBlur={(e) => {
+                                            e.target.style.borderColor = '#d1d5db';
+                                            e.target.style.boxShadow = 'none';
+                                        }}
+                                    />
+
+                                </Space>
+                               </div>
                             </div>
 
                             {/* Join Date */}
@@ -251,15 +225,38 @@ export default function AddEmployeeForm() {
                                     <CalendarIcon className="w-4 h-4 text-orange-500" />
                                     Join Date *
                                 </label>
-                                <input
-                                    ref={joinDateRef}
-                                    type="text"
-                                    value={joinDate}
-                                    onChange={(e) => setJoinDate(e.target.value)}
-                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-[5px] outline-none bg-gray-50 text-gray-500 text-[15px] cursor-pointer"
-                                    placeholder="Select join date"
-                                    readOnly
-                                />
+                                <div className="w-full h-10">
+                                <Space direction="vertical" className="w-full  rounded-[5px]" size={5}>
+                                    <DatePicker 
+                                        className="w-full h-10"
+                                        placeholder="Select date of birth"
+                                        style={{
+                                            width: '100%',
+                                            height: '40px',
+                                            border: '1px solid #d1d5db',
+                                            backgroundColor: '#f9fafb',
+                                            boxShadow: 'none',
+                                            borderRadius: '5px',
+                                            fontSize: '13px'
+                                        }}
+                                        suffixIcon={null}
+                                        allowClear={false}
+                                        disabledDate={(current) => {
+                                            // Disable future dates - only allow today and previous dates
+                                            return current && current.isAfter(new Date(), 'day');
+                                        }}
+                                        onFocus={(e) => {
+                                            e.target.style.borderColor = '#d1d5db';
+                                            e.target.style.boxShadow = 'none';
+                                        }}
+                                        onBlur={(e) => {
+                                            e.target.style.borderColor = '#d1d5db';
+                                            e.target.style.boxShadow = 'none';
+                                        }}
+                                    />
+
+                                </Space>
+                               </div>
                             </div>
                         </div>
 
@@ -337,6 +334,8 @@ export default function AddEmployeeForm() {
                     </form>
                 </div>
             </div>
+
+
         </div>
     );
 }

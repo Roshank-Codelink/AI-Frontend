@@ -53,7 +53,7 @@ export default function AddEmployee({ onTabChange }: Props) {
             <TabsTrigger
               value="Team"
               onClick={handleEmployeesClick}
-              className="w-full text-[#ff8d4f] font-semibold flex items-center justify-center p-2 cursor-pointer
+              className="w-full text-[#ff8d4f] shadow-none font-semibold flex items-center justify-center p-2 cursor-pointer
                          data-[state=active]:text-[#ff8d4f] data-[state=active]:bg-white rounded-[5px]"
             >
               <User className="text-orange-500 flex-shrink-0 w-5 h-5" />

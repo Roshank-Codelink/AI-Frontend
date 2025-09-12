@@ -175,56 +175,75 @@
   }
 }
 
-/* FLATPICKR */
-.custom-flatpickr {
-  border-radius: 5px !important;
-  border: 1px solid #d1d5db !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+/* Custom DatePicker styles - only font size for input */
+.ant-picker-input input {
+  font-size: 13px !important;
 }
 
-.custom-flatpickr .flatpickr-day.selected {
-  background: #f97316 !important;
-  border-color: #f97316 !important;
+/* DatePicker calendar popup button styles */
+.ant-picker-header-view button {
+  color: #f97316 !important; /* orange-500 */
 }
 
-.custom-flatpickr .flatpickr-day:hover {
-  background: #fed7aa !important;
-  border-color: #fed7aa !important;
+.ant-picker-header-super-prev-btn,
+.ant-picker-header-prev-btn,
+.ant-picker-header-next-btn,
+.ant-picker-header-super-next-btn {
+  color: #f97316 !important; /* orange-500 */
 }
 
-.custom-flatpickr .flatpickr-day.today {
-  border-color: #f97316 !important;
-  color: #f97316 !important;
+/* Month and year selection buttons */    
+.ant-picker-month-panel .ant-picker-cell-inner,
+.ant-picker-year-panel .ant-picker-cell-inner {
+  color: #374151 !important; /* gray-700 */
 }
 
-.custom-flatpickr .flatpickr-day.today.selected {
-  background: #f97316 !important;
-  border-color: #f97316 !important;
+.ant-picker-month-panel .ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-year-panel .ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #f97316 !important; /* orange-500 */
   color: white !important;
 }
 
-.custom-flatpickr .flatpickr-month {
-  background: #f9fafb !important;
-  border-bottom: 1px solid #e5e7eb !important;
+/* Date selection buttons */
+.ant-picker-cell-inner {
+  color: #374151 !important; /* gray-700 */
 }
 
-.custom-flatpickr .flatpickr-weekday {
-  background: #f9fafb !important;
-  color: #6b7280 !important;
-  font-weight: 600 !important;
+.ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #f97316 !important; /* orange-500 */
+  color: white !important;
 }
 
-.custom-flatpickr .flatpickr-prev-month,
-.custom-flatpickr .flatpickr-next-month {
-  color: #6b7280 !important;
+.ant-picker-cell-today .ant-picker-cell-inner {
+  border: 1px solid #f97316 !important; /* orange-500 */
+  color: #f97316 !important; /* orange-500 */
+  background-color: transparent !important;
 }
 
-.custom-flatpickr .flatpickr-prev-month:hover,
-.custom-flatpickr .flatpickr-next-month:hover {
-  color: #f97316 !important;
+.ant-picker-cell-today .ant-picker-cell-inner::before {
+  display: none !important;
 }
 
-.custom-flatpickr .flatpickr-current-month {
-  color: #374151 !important;
-  font-weight: 600 !important;
+.ant-picker-cell-today .ant-picker-cell-inner .ant-picker-cell-inner-content {
+  color: #f97316 !important; /* orange-500 */
+  font-weight: normal !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Disabled dates - only change text color, no background change */
+.ant-picker-cell-disabled .ant-picker-cell-inner {
+  color: #9ca3af !important; /* gray-400 */
+  background-color: transparent !important;
+  cursor: not-allowed !important;
+}
+
+/* Today button styling */
+.ant-picker-now-btn {
+  color: #f97316 !important; /* orange-500 */
+}
+
+.ant-picker-now-btn:hover {
+  color: #ea580c !important; /* orange-600 */
 }
