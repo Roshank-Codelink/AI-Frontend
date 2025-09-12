@@ -197,10 +197,12 @@ export default function AddEmployeeForm() {
                                             backgroundColor: '#f9fafb',
                                             boxShadow: 'none',
                                             borderRadius: '5px',
-                                            fontSize: '13px'
+                                            fontSize: '13px',
+                                            cursor: 'pointer'
                                         }}
                                         suffixIcon={null}
                                         allowClear={false}
+                                        inputReadOnly={true}
                                         disabledDate={(current) => {
                                             // Disable future dates - only allow today and previous dates
                                             return current && current.isAfter(new Date(), 'day');
@@ -229,7 +231,7 @@ export default function AddEmployeeForm() {
                                 <Space direction="vertical" className="w-full  rounded-[5px]" size={5}>
                                     <DatePicker 
                                         className="w-full h-10"
-                                        placeholder="Select date of birth"
+                                        placeholder="Select date of Joining"
                                         style={{
                                             width: '100%',
                                             height: '40px',
@@ -241,6 +243,7 @@ export default function AddEmployeeForm() {
                                         }}
                                         suffixIcon={null}
                                         allowClear={false}
+                                        inputReadOnly={true}
                                         disabledDate={(current) => {
                                             // Disable future dates - only allow today and previous dates
                                             return current && current.isAfter(new Date(), 'day');
